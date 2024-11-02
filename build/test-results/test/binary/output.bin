@@ -1,22 +1,96 @@
-:{"errorMessages":["Invalid GUID for -1 entity category"]}
-2{"id":"72","title":" Chocolate","description":""}
-D{"errorMessages":["Could not find an instance with categories/-1"]}
-Y{"errorMessages":["Invalid Creation: Failed Validation: Not allowed to create with id"]}
-[{"categories":[{"id":"78","title":"Category Title","description":"Category Description"}]}
-F{"errorMessages":["Could not find any instances with categories/-1"]}
-	ä*{"categories":[{"id":"25","title":"Category Title","description":"Category Description"},{"id":"36","title":"Category Title","description":"Category Description"},{"id":"74","title":"Category Title","description":"Category Description"},{"id":"59","title":"Category Title","description":"Category Description"},{"id":"63","title":"Category Title","description":"Category Description"},{"id":"2","title":"Home","description":""},{"id":"49","title":"Category Title","description":"Category Description"},{"id":"66","title":"Category Title","description":"Category Description"},{"id":"60","title":"Category Title","description":"Category Description"},{"id":"80","title":"Category Title","description":"Category Description"},{"id":"10","title":"Category Title","description":"Category Description"},{"id":"13","title":"Category Title","description":"Category Description"},{"id":"11","title":"Category Title","description":"Category Description"},{"id":"43","title":"Category Title","description":"Category Description"},{"id":"17","title":"Category Title","description":"Category Description"},{"id":"28","title":"Category Title","description":"Category Description"},{"id":"24","title":"Category Title","description":"Category Description"},{"id":"68","title":"Category Title","description":"Category Description"},{"id":"16","title":"Category Title","description":"Category Description"},{"id":"5","title":"Category Title","description":"Category Description"},{"id":"30","title":"Category Title","description":"Category Description"},{"id":"35","title":"Category Title","description":"Category Description"},{"id":"23","title":"Category Title","description":"Category Description"},{"id":"38","title":"Category Title","description":"Category Description"},{"id":"32","title":"Category Title","description":"Category Description"},{"id":"58","title":"Category Title","description":"Category Description"},{"id":"48","title":"Category Title","description":"Category Description"},{"id":"53","title":"Category Title","description":"Category Description"},{"id":"4","title":"Category Title","description":"Category Description"},{"id":"12","title":"Category Title","description":"Category Description"},{"id":"29","title":"Category Title","description":"Category Description"},{"id":"51","title":"Category Title","description":"Category Description"},{"id":"19","title":"Category Title","description":"Category Description"},{"id":"20","title":"Category Title","description":"Category Description"},{"id":"78","title":"Category Title","description":"Category Description"},{"id":"26","title":"Category Title","description":"Category Description"},{"id":"18","title":"Category Title","description":"Category Description"},{"id":"1","title":"Office","description":""},{"id":"39","title":"Category Title","description":"Category Description"},{"id":"47","title":"Category Title","description":"Category Description"},{"id":"45","title":"Category Title","description":"Category Description"},{"id":"44","title":"Category Title","description":"Category Description"},{"id":"46","title":"Category Title","description":"Category Description"},{"id":"3","title":"Category Title","description":"Category Description"},{"id":"50","title":"Category Title","description":"Category Description"},{"id":"67","title":"Category Title","description":"Category Description"},{"id":"21","title":"Category Title","description":"Category Description"},{"id":"57","title":"Category Title","description":"Category Description"},{"id":"54","title":"Category Title","description":"Category Description"},{"id":"8","title":"Category Title","description":"Category Description"},{"id":"82","title":"Category Title","description":"Category Description"},{"id":"37","title":"Category Title","description":"Category Description"},{"id":"15","title":"Category Title","description":"Category Description"},{"id":"65","title":"Category Title","description":"Category Description"},{"id":"41","title":"Category Title","description":"Category Description"},{"id":"70","title":"Category Title","description":"Category Description"},{"id":"64","title":"Category Title","description":"Category Description"},{"id":"14","title":"Category Title","description":"Category Description"},{"id":"76","title":"Category Title","description":"Category Description"},{"id":"72","title":" Chocolate","description":""},{"id":"9","title":"Category Title","description":"Category Description"},{"id":"34","title":"Category Title","description":"Category Description"},{"id":"31","title":"Category Title","description":"Category Description"},{"id":"33","title":"Category Title","description":"Category Description"},{"id":"42","title":"Category Title","description":"Category Description"},{"id":"52","title":"Category Title","description":"Category Description"},{"id":"55","title":"Category Title","description":"Category Description"},{"id":"22","title":"Category Title","description":"Category Description"},{"id":"61","title":"Category Title","description":"Category Description"},{"id":"40","title":"Category Title","description":"Category Description"},{"id":"27","title":"Category Title","description":"Category Description"},{"id":"62","title":"Category Title","description":"Category Description"},{"id":"56","title":"Category Title","description":"Category Description"},{"id":"6","title":"Category Title","description":"Category Description"},{"id":"7","title":"Category Title","description":"Category Description"}]}
+
+
+
+•{"projects":[{"id":"1","title":"Office Work","completed":"false","active":"false","description":"","tasks":[{"id":"1"},{"id":"2"},{"id":"40"}],"categories":[{"id":"45"},{"id":"39"},{"id":"41"},{"id":"43"},{"id":"49"},{"id":"59"},{"id":"46"},{"id":"50"},{"id":"64"},{"id":"62"},{"id":"58"},{"id":"51"},{"id":"61"},{"id":"42"},{"id":"53"},{"id":"54"},{"id":"48"},{"id":"38"},{"id":"37"},{"id":"57"},{"id":"63"},{"id":"65"},{"id":"47"},{"id":"44"},{"id":"36"},{"id":"60"},{"id":"55"},{"id":"56"},{"id":"67"},{"id":"40"},{"id":"52"}]}]}
+
+
+
+
+
+A{"errorMessages":["Could not find thing matching value for Id"]}
+
+
+F{"errorMessages":["Failed Validation: doneStatus should be BOOLEAN"]}
+
+
+^Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
+
+
+Response status code: 400
+@Response body: {"errorMessages":["title : field is mandatory"]}
+
+	
+	
 
-B{"errorMessages":["Failed Validation: title : can not be empty"]}
-<{"categories":[{"id":"2","title":"Home","description":""}]}
+
+
+
+
+Response status code: 400
+@Response body: {"errorMessages":["title : field is mandatory"]}
+
 
-{"projects":[]}
-{"categories":[]}
-P{"errorMessages":["No such category entity instance with GUID or ID -1 found"]}
-B{"errorMessages":["Failed Validation: title : can not be empty"]}
-_Response body: {"errorMessages":["Mismatched title and category at 90 [character 91 line 1]"]}
-„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
-B{"errorMessages":["Failed Validation: title : can not be empty"]}
-D{"id":"111","title":" Couch ","description":"Category Description"}
-{"categories":[]}
-{"todos":[]}
-U{"id":"118","title":"s anim id est laboruma i","description":"in culpa qui officia"}
+
+
+¤{"todos":[{"id":"51","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"131"}],"tasksof":[{"id":"1"}]}]}
+
+
+
+
+
+€{"todos":[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"53","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"133"}],"tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]}]}
+
+
+e{"id":"55","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu"}
+
+
+„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
+
+
+?{"errorMessages":["Could not find an instance with todos/-1"]}
+
+
+
+
+
+O{"errorMessages":["Could not find any instances with todos/59/categories/-1"]}
+
+
+
+
+
+
+
+1{"errorMessages":["title : field is mandatory"]}
+
+
+
+
+
+
+
+{"id":"66","title":"New Title","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"144"}],"tasksof":[{"id":"1"}]}
+
+
+Š{"id":"67","title":" new title ","doneStatus":"false","description":"new description","categories":[{"id":"145"}],"tasksof":[{"id":"1"}]}
+
+
+6{"errorMessages":["Invalid GUID for -1 entity todo"]}
+
+
+L{"errorMessages":["No such todo entity instance with GUID or ID -1 found"]}
+
+
+€{"todos":[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]},{"id":"70","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"148"}],"tasksof":[{"id":"1"}]}]}
+ö[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]},{"id":"70","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"148"}],"tasksof":[{"id":"1"}]}]
+
+
+]{"id":"71","title":"Updated Title","doneStatus":"false","description":"Updated Description"}
+
+ 
+ 
+!
+!>{"categories":[{"id":"1","title":"Office","description":""}]}
+!
+"
+"

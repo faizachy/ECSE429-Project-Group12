@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'ECSE429-Project-Group12' // Change this to your package name
+version '1.0-SNAPSHOT'
+sourceCompatibility = '19'
+targetCompatibility = '19'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 5 dependency
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+
+    // Cucumber dependencies
+    implementation 'io.cucumber:cucumber-java:6.10.4' // Change version if necessary
+    implementation 'io.cucumber:cucumber-junit:6.10.4' // Change version if necessary
+}
+
+test {
+    useJUnitPlatform()
+}

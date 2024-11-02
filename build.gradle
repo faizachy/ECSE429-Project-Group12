@@ -17,7 +17,14 @@ dependencies {
     // Cucumber dependencies
     implementation 'io.cucumber:cucumber-java:6.10.4' // Change version if necessary
     implementation 'io.cucumber:cucumber-junit:6.10.4' // Change version if necessary
+
+    // Jackson dependencies
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-json:2.14.0'
 }
+
 
 test {
     useJUnitPlatform()

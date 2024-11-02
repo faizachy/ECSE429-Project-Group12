@@ -15,14 +15,14 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     // Cucumber dependencies
-    implementation 'io.cucumber:cucumber-java:6.10.4' // Change version if necessary
-    implementation 'io.cucumber:cucumber-junit:6.10.4' // Change version if necessary
+    testImplementation 'io.cucumber:cucumber-java:6.10.4' // Change version if necessary
+    testImplementation 'io.cucumber:cucumber-junit:6.10.4' // Change version if necessary
 
     // Jackson dependencies
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-json:2.14.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.18.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.1'
+
 }
 
 

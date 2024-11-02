@@ -1,96 +1,0 @@
-
-
-
-•{"projects":[{"id":"1","title":"Office Work","completed":"false","active":"false","description":"","tasks":[{"id":"1"},{"id":"2"},{"id":"40"}],"categories":[{"id":"45"},{"id":"39"},{"id":"41"},{"id":"43"},{"id":"49"},{"id":"59"},{"id":"46"},{"id":"50"},{"id":"64"},{"id":"62"},{"id":"58"},{"id":"51"},{"id":"61"},{"id":"42"},{"id":"53"},{"id":"54"},{"id":"48"},{"id":"38"},{"id":"37"},{"id":"57"},{"id":"63"},{"id":"65"},{"id":"47"},{"id":"44"},{"id":"36"},{"id":"60"},{"id":"55"},{"id":"56"},{"id":"67"},{"id":"40"},{"id":"52"}]}]}
-
-
-
-
-
-A{"errorMessages":["Could not find thing matching value for Id"]}
-
-
-F{"errorMessages":["Failed Validation: doneStatus should be BOOLEAN"]}
-
-
-^Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
-
-
-Response status code: 400
-@Response body: {"errorMessages":["title : field is mandatory"]}
-
-	
-	
-
-
-
-
-
-Response status code: 400
-@Response body: {"errorMessages":["title : field is mandatory"]}
-
-
-
-
-¤{"todos":[{"id":"51","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"131"}],"tasksof":[{"id":"1"}]}]}
-
-
-
-
-
-€{"todos":[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"53","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"133"}],"tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]}]}
-
-
-e{"id":"55","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu"}
-
-
-„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
-
-
-?{"errorMessages":["Could not find an instance with todos/-1"]}
-
-
-
-
-
-O{"errorMessages":["Could not find any instances with todos/59/categories/-1"]}
-
-
-
-
-
-
-
-1{"errorMessages":["title : field is mandatory"]}
-
-
-
-
-
-
-
-{"id":"66","title":"New Title","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"144"}],"tasksof":[{"id":"1"}]}
-
-
-Š{"id":"67","title":" new title ","doneStatus":"false","description":"new description","categories":[{"id":"145"}],"tasksof":[{"id":"1"}]}
-
-
-6{"errorMessages":["Invalid GUID for -1 entity todo"]}
-
-
-L{"errorMessages":["No such todo entity instance with GUID or ID -1 found"]}
-
-
-€{"todos":[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]},{"id":"70","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"148"}],"tasksof":[{"id":"1"}]}]}
-ö[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":"","categories":[{"id":"1"}],"tasksof":[{"id":"1"}]},{"id":"70","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","categories":[{"id":"148"}],"tasksof":[{"id":"1"}]}]
-
-
-]{"id":"71","title":"Updated Title","doneStatus":"false","description":"Updated Description"}
-
- 
- 
-!
-!>{"categories":[{"id":"1","title":"Office","description":""}]}
-!
-"
-"

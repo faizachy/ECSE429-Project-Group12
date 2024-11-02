@@ -23,6 +23,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.18.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.1'
 
+    // RestAssured for API testing
+    testImplementation 'io.rest-assured:rest-assured:5.2.0'
 }
 
 

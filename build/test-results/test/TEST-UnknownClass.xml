@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UnknownClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-02T20:50:59" hostname="Faizas-MacBook-Air.local" time="0.715">
+<testsuite name="UnknownClass" tests="7" skipped="0" failures="1" errors="0" timestamp="2024-11-03T20:54:29" hostname="Faizas-MacBook-Air.local" time="0.88">
   <properties/>
-  <testcase name="Adding a new to-do item" classname="UnknownClass" time="0.715"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="Adding a new to-do item" classname="UnknownClass" time="0.684"/>
+  <testcase name="Delete a specific to-do item" classname="UnknownClass" time="0.033">
+    <failure message="org.opentest4j.AssertionFailedError: The response status code does not confirm deletion. ==&gt; expected: &lt;200&gt; but was: &lt;404&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: The response status code does not confirm deletion. ==&gt; expected: &lt;200&gt; but was: &lt;404&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at app//steps.deleteTodo.the_response_should_confirm_the_deletion_of_the_to_do_item(deleteTodo.java:50)
+	at ✽.the response should confirm the deletion of the to-do item(classpath:deleteTodo.feature:8)
+</failure>
+  </testcase>
+  <testcase name="Retrieve list of all to-do items" classname="UnknownClass" time="0.059"/>
+  <testcase name="Retrieve details of an existing to-do item" classname="UnknownClass" time="0.023"/>
+  <testcase name="Attempt to retrieve a non-existent to-do item" classname="UnknownClass" time="0.021"/>
+  <testcase name="Mark a to-do item as completed" classname="UnknownClass" time="0.031"/>
+  <testcase name="Mark a completed to-do item as not completed" classname="UnknownClass" time="0.028"/>
+  <system-out><![CDATA[Todo ID: 4, Title: Sample To-do, Done Status: false, Description: 
+Todo ID: 9, Title: To-Do Item 1, Done Status: false, Description: 
+Todo ID: 3, Title: Sample To-do, Done Status: true, Description: 
+Todo ID: 6, Title: To-Do Item 2, Done Status: false, Description: 
+Todo ID: 7, Title: Buy groceries, Done Status: false, Description: 
+Todo ID: 8, Title: Buy groceries, Done Status: false, Description: 
+Todo ID: 10, Title: To-Do Item 2, Done Status: false, Description: 
+Todo ID: 2, Title: file paperwork, Done Status: false, Description: 
+Todo ID: 5, Title: To-Do Item 1, Done Status: false, Description: 
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

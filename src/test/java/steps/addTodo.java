@@ -6,7 +6,9 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import io.restassured.path.json.JsonPath;
 
-public class addingTodo {
+import java.util.List;
+
+public class addTodo {
     private String newTodoTitle;
     private String responseBody;
     private int responseStatus;
@@ -60,6 +62,27 @@ public class addingTodo {
 
     @Then("the to-do item should be saved with a unique ID")
     public void the_to_do_item_should_be_saved_with_a_unique_id() {
-       //TODO
+        // Parse the response body as JSON to get the ID of the new to-do item
+        JsonPath jsonResponse = new JsonPath(responseBody);
+        String todoId = jsonResponse.getString("id");
+
+        // Fetch all to-do items
+        String allTodosResponse = given()
+                .when()
+                .get("/todos")
+                .then()
+                .extract()
+                .response()
+                .asString();
+
+        JsonPath allTodosJson = new JsonPath(allTodosResponse);
+        List<String> allTodoIds = allTodosJson.getList("todos.id");
+
+        // Count occurrences of the ID in the list
+        long count = allTodoIds.stream().filter(id -> id.equals(todoId)).count();
+
+        // Confirm its uniqueness
+        assertEquals(1, count, "The to-do ID is not unique!");
     }
+
 }

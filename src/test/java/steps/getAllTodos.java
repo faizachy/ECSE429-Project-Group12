@@ -108,7 +108,7 @@ public class getAllTodos {
     public void i_send_a_get_request_to_retrieve_the_to_do_items_with_id(String id) {
         Response response = given()
                 .when()
-                .get("/todos/" + id); // Adjust the endpoint as needed
+                .get("/todos/" + id);
 
         // Extract response body and status code
         responseBody = response.asString();

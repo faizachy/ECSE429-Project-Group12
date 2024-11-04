@@ -2,12 +2,10 @@ package steps;
 
 import io.cucumber.java.en.*;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class deleteTodo {
@@ -16,12 +14,13 @@ public class deleteTodo {
     private String todoId;
     private String body;
     static {
-        baseURI = "http://localhost:4567"; // Adjust as needed
+        baseURI = "http://localhost:4567";
     }
 
     @Given("a to-do item exists for deleting")
     public void a_to_do_item_exists_with_ID_delete() {
 
+        // create a todo item to delete
             responseBody = given()
                     .contentType("application/json")
                     .body("{\"title\": \"Sample To-Do\"} ")

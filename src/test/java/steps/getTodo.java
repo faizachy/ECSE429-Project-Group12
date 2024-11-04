@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
+
 
 import java.util.List;
 import java.util.Map;
@@ -18,12 +18,9 @@ public class getTodo {
     private List<Object> todo;
     private Map<String, Object> todoObject;
     private String id;
-    private String title ;
-    private String doneStatus;
-    private String description;
-    private String body;
+
     static {
-        baseURI = "http://localhost:4567"; // Adjust as needed
+        baseURI = "http://localhost:4567";
     }
 
     @Given("a to-do item exists for getting with ID {string}")
@@ -53,12 +50,9 @@ public class getTodo {
 
             // Parse the response body to find the newly created item
             JsonPath jsonResponse = new JsonPath(responseBody);
-            String createdId = jsonResponse.getString("id"); // Adjust this based on the response structure
+            String createdId = jsonResponse.getString("id");
 
-            // Log or store the createdId for later verification if needed
             System.out.println("Created to-do item ID: " + createdId);
-
-            // Optionally, check that the created ID is not null
             assertNotNull(createdId, "The created to-do item ID should not be null.");
         }
     }
@@ -132,7 +126,7 @@ public class getTodo {
                 .when()
                 .delete("/todos/" + id)
                 .then()
-                .statusCode(anyOf(is(200), is(404))); // Ignore errors if item does not exist
+                .statusCode(anyOf(is(200), is(404)));
     }
     @When("I send a GET request to retrieve to-do item with ID {string}")
     public void i_send_a_get_request_to_retrieve_to_do_item_with_ID(String id) {

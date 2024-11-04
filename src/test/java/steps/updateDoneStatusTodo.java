@@ -9,16 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import java.util.List;
-import java.util.Map;
 
 public class updateDoneStatusTodo {
     private String responseBody;
     private int responseStatus;
-    private String todoId = "123"; // ID for the to-do item
 
     static {
-        baseURI = "http://localhost:4567"; // Adjust as needed
+        baseURI = "http://localhost:4567";
     }
 
     @Given("a to-do item exists with ID {string} and is not marked as completed")

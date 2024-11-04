@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UnknownClass" tests="14" skipped="0" failures="0" errors="0" timestamp="2024-11-04T04:50:41" hostname="Faizas-MacBook-Air.local" time="1.034">
+<testsuite name="UnknownClass" tests="29" skipped="0" failures="1" errors="0" timestamp="2024-11-04T20:05:13" hostname="Faizas-MacBook-Air.local" time="1.3">
   <properties/>
-  <testcase name="Adding a new to-do item" classname="UnknownClass" time="0.775"/>
-  <testcase name="Attempting to add a new to-do item without a title" classname="UnknownClass" time="0.017"/>
-  <testcase name="Attempting to add a new to-do item with a malformed JSON request" classname="UnknownClass" time="0.009"/>
-  <testcase name="Delete a specific to-do item" classname="UnknownClass" time="0.027"/>
-  <testcase name="Attempt to delete a non-existing to-do item" classname="UnknownClass" time="0.019"/>
+  <testcase name="Adding a new to-do item" classname="UnknownClass" time="0.817"/>
+  <testcase name="Attempting to add a new to-do item without a title" classname="UnknownClass" time="0.028"/>
+  <testcase name="Attempting to add a new to-do item with a malformed JSON request" classname="UnknownClass" time="0.015"/>
+  <testcase name="Normal Flow - Creating a new category" classname="UnknownClass" time="0.023"/>
+  <testcase name="Alternate Flow - Creating a new category" classname="UnknownClass" time="0.027"/>
+  <testcase name="Error Flow - Creating a new category" classname="UnknownClass" time="0.015"/>
+  <testcase name="Normal Flow - Delete a specific category using id" classname="UnknownClass" time="0.016"/>
+  <testcase name="Alternate Flow - Delete category without id" classname="UnknownClass" time="0.012"/>
+  <testcase name="Error Flow - Delete a category with non-existent id" classname="UnknownClass" time="0.007"/>
+  <testcase name="Delete a specific to-do item" classname="UnknownClass" time="0.026"/>
+  <testcase name="Attempt to delete a non-existing to-do item" classname="UnknownClass" time="0.021"/>
   <testcase name="Attempt to delete with a malformed ID" classname="UnknownClass" time="0.015"/>
-  <testcase name="Retrieve list of all to-do items" classname="UnknownClass" time="0.02"/>
-  <testcase name="Retrieve a specific to-do item by ID" classname="UnknownClass" time="0.012"/>
-  <testcase name="Retrieve details of an existing to-do item" classname="UnknownClass" time="0.017"/>
-  <testcase name="Attempt to retrieve a non-existent to-do item" classname="UnknownClass" time="0.015"/>
-  <testcase name="Attempt to retrieve a to-do item with a malformed request body" classname="UnknownClass" time="0.018"/>
-  <testcase name="Mark a to-do item as completed" classname="UnknownClass" time="0.043"/>
+  <testcase name="Retrieve list of all to-do items" classname="UnknownClass" time="0.025"/>
+  <testcase name="Retrieve a specific to-do item by ID" classname="UnknownClass" time="0.015"/>
+  <testcase name="Normal Flow - Get all categories" classname="UnknownClass" time="0.013"/>
+  <testcase name="Alternate flow - Get a specific category" classname="UnknownClass" time="0.027"/>
+  <testcase name="Error Flow - Get a category with a non-existent id" classname="UnknownClass" time="0.009"/>
+  <testcase name="Retrieve details of an existing to-do item" classname="UnknownClass" time="0.016"/>
+  <testcase name="Attempt to retrieve a non-existent to-do item" classname="UnknownClass" time="0.014"/>
+  <testcase name="Attempt to retrieve a to-do item with a malformed request body" classname="UnknownClass" time="0.012"/>
+  <testcase name="Normal Flow - Update title field for a specific category" classname="UnknownClass" time="0.017"/>
+  <testcase name="Alternate Flow - Update title and description fields for a specific category" classname="UnknownClass" time="0.012"/>
+  <testcase name="Error Flow - Update title field for non-existent category" classname="UnknownClass" time="0.005"/>
+  <testcase name="Mark a to-do item as completed" classname="UnknownClass" time="0.022"/>
   <testcase name="Mark a completed to-do item as not completed" classname="UnknownClass" time="0.024"/>
   <testcase name="Attempt to update the completion status without specifying the status" classname="UnknownClass" time="0.018"/>
+  <testcase name="Normal Flow - View category details of category with title only" classname="UnknownClass" time="0.016"/>
+  <testcase name="Alternate Flow - View category details of category with title and description" classname="UnknownClass" time="0.015">
+    <failure message="java.lang.AssertionError: &#10;Expected: a string containing &quot;\&quot;title\&quot;:\&quot;Category 4 Title\&quot;&quot;&#10;     but: was &quot;{&quot;categories&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;title&quot;:&quot;CategoryTest&quot;,&quot;description&quot;:&quot;&quot;}]}&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
+Expected: a string containing &quot;\&quot;title\&quot;:\&quot;Category 4 Title\&quot;&quot;
+     but: was &quot;{&quot;categories&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;title&quot;:&quot;CategoryTest&quot;,&quot;description&quot;:&quot;&quot;}]}&quot;
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:18)
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+	at steps.viewCategories.the_title_of_category_with_id_retrieved_is(viewCategories.java:51)
+	at ✽.the title of category with ID 4 retrieved is &quot;Category 4 Title&quot;(classpath:viewCategories.feature:12)
+</failure>
+  </testcase>
+  <testcase name="Error Flow - View category details of category with non-existent id" classname="UnknownClass" time="0.01"/>
   <system-out><![CDATA[Todo ID: 1, Title: scan paperwork, Done Status: false, Description: 
 Todo ID: 2, Title: file paperwork, Done Status: false, Description: 
 ]]></system-out>

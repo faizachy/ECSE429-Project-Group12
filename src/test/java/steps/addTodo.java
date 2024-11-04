@@ -46,8 +46,8 @@ public class addTodo {
         createdTodoId = jsonResponse.getString("id");
     }
 
-    @Then("the response status code should be {int}")
-    public void the_response_status_code_should_be(int statusCode) {
+    @Then("the response status code should be- {int}")
+    public void the_response_status_code_should_be_todo(int statusCode) {
         assertEquals(statusCode, responseStatus);
     }
 

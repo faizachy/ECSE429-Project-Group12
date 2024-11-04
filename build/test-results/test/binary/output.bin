@@ -1,9 +1,2 @@
-CTodo ID: 4, Title: Sample To-do, Done Status: false, Description: 
-CTodo ID: 9, Title: To-Do Item 1, Done Status: false, Description: 
-BTodo ID: 3, Title: Sample To-do, Done Status: true, Description: 
-CTodo ID: 6, Title: To-Do Item 2, Done Status: false, Description: 
-DTodo ID: 7, Title: Buy groceries, Done Status: false, Description: 
-DTodo ID: 8, Title: Buy groceries, Done Status: false, Description: 
-DTodo ID: 10, Title: To-Do Item 2, Done Status: false, Description: 
-ETodo ID: 2, Title: file paperwork, Done Status: false, Description: 
-CTodo ID: 5, Title: To-Do Item 1, Done Status: false, Description: 
+ETodo ID: 1, Title: scan paperwork, Done Status: false, Description: 
+ETodo ID: 2, Title: file paperwork, Done Status: false, Description: 

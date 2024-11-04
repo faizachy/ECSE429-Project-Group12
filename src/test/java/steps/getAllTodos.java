@@ -7,6 +7,8 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,17 +22,27 @@ public class getAllTodos {
 
     @Given("there are multiple to-do items in the system")
     public void there_are_multiple_to_do_items_in_the_system() {
-        given().contentType("application/json")
-                .body("{\"title\": \"To-Do Item 1\"}")
-                .when().post("/todos");
+        responseBody = given()
+                .when()
+                .get("/todos")
+                .then()
+                .extract()
+                .response()
+                .asString();
 
-        given().contentType("application/json")
-                .body("{\"title\": \"To-Do Item 2\"}")
-                .when().post("/todos");
+        JsonPath jsonResponse = new JsonPath(responseBody);
+        todoList = jsonResponse.getList("todos");
 
-        // verify items exist by performing a GET request and checking the response
-        responseStatus = given().when().get("/todos").getStatusCode();
-        assertEquals(200, responseStatus, "Expected status 200, but got " + responseStatus);
+        // Check if there are already multiple items; if not, add some
+        if (todoList.size() < 2) {
+            given().contentType("application/json")
+                    .body("{\"title\": \"To-Do Item 1\"}")
+                    .when().post("/todos");
+
+            given().contentType("application/json")
+                    .body("{\"title\": \"To-Do Item 2\"}")
+                    .when().post("/todos");
+        }
     }
 
     @When("I send a GET request to retrieve all to-do items")
@@ -81,5 +93,35 @@ public class getAllTodos {
 
             System.out.println("Todo ID: " + id + ", Title: " + title + ", Done Status: " + doneStatus + ", Description: " + description);
         }
+    }
+    @Given("there is a to-do item with ID {string} in the system")
+    public void there_is_a_to_do_item_with_id_in_the_system(String id) {
+        // Capture the response status
+        responseStatus = given().when().get("/todos/" + id).getStatusCode();
+        // Validate the response status
+        if (responseStatus != 200) {
+            throw new IllegalStateException("To-Do item with ID " + id + " does not exist. Status code: " + responseStatus);
+        }
+    }
+
+    @When("I send a GET request to retrieve the to-do object with ID {string}")
+    public void i_send_a_get_request_to_retrieve_the_to_do_items_with_id(String id) {
+        Response response = given()
+                .when()
+                .get("/todos/" + id); // Adjust the endpoint as needed
+
+        // Extract response body and status code
+        responseBody = response.asString();
+        responseStatus = response.getStatusCode();
+    }
+
+    @Then("the API should only return the details of the to-do item with ID {string}")
+    public void the_api_should_only_return_the_details_of_the_to_do_item_with_id(String id) {
+        // Check that the response status is 200 for successful retrieval
+        assertEquals(200, responseStatus, "Expected status 200 for existing to-do item retrieval.");
+        JsonPath jsonResponse = new JsonPath(responseBody);
+        List<Object> todo = jsonResponse.getList("todos");
+        // Check that the size of the list is exactly 1
+        assertEquals(1, todo.size(), "Expected exactly one to-do item, but found " +  todo.size());
     }
 }

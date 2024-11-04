@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class updateDoneStatusTodo {
         // Create or reset the to-do item with ID and ensure doneStatus is false
         responseBody = given()
                 .contentType("application/json")
-                .body("{\"title\": \"Sample To-Do\", \"doneStatus\": false}")
+                .body("{\"title\": \"scan paperwork\", \"doneStatus\": false}")
                 .when()
                 .put("/todos/" + id)
                 .then()
@@ -42,15 +43,15 @@ public class updateDoneStatusTodo {
 
     }
 
-    @When("I send a POST request to update the status to {string} for the to-do item with ID {string}")
+    @When("I send a PUT request to update the status to {string} for the to-do item with ID {string}")
     public void i_send_a_post_request_to_update_the_status_for_the_to_do_item_with_ID(String status, String id) {
 
         // Send POST request to update the doneStatus of the to-do item
         responseBody = given()
                 .contentType("application/json")
-                .body("{\"title\": \"Sample To-do\", \"doneStatus\": " + status + "}")
+                .body("{\"title\": \"scan paperwork\", \"doneStatus\": " + status + "}")
                 .when()
-                .post("/todos/" + id)
+                .put("/todos/" + id)
                 .then()
                 .extract()
                 .response()
@@ -59,9 +60,9 @@ public class updateDoneStatusTodo {
         // Capture the response status code
         responseStatus = given()
                 .contentType("application/json")
-                .body("{\"title\": \"Sample To-do\", \"doneStatus\": " + status + "}")
+                .body("{\"title\": \"scan paperwork\", \"doneStatus\": " + status + "}")
                 .when()
-                .post("/todos/" + id)
+                .put("/todos/" + id)
                 .getStatusCode();
     }
 
@@ -84,10 +85,10 @@ public class updateDoneStatusTodo {
 
     @Given("a to-do item exists with ID {string} and is marked as completed")
     public void a_to_do_item_exists_with_ID_and_is_marked_as_completed(String id) {
-        // Create or reset the to-do item with ID and ensure doneStatus is false
+        // Create or reset the to-do item with ID and ensure doneStatus is true
         responseBody = given()
                 .contentType("application/json")
-                .body("{\"title\": \"Sample To-Do\", \"doneStatus\": true}")
+                .body("{\"title\": \"scan paperwork\", \"doneStatus\": true}")
                 .when()
                 .put("/todos/" + id)
                 .then()
@@ -95,10 +96,8 @@ public class updateDoneStatusTodo {
                 .response()
                 .asString();
 
-        // Check that doneStatus is set to false
+        // Check that doneStatus is set to true
         JsonPath jsonResponse = new JsonPath(responseBody);
-
-
         String doneStatus = (String) jsonResponse.getString("doneStatus");
         assertThat("To-do item should be marked as completed.", doneStatus, is("true"));
     }
@@ -111,5 +110,28 @@ public class updateDoneStatusTodo {
         // Parse the response and ensure doneStatus is false
         JsonPath jsonResponse = new JsonPath(responseBody);
         assertThat("To-do item should be marked as not completed.", jsonResponse.getString("doneStatus"), is("false"));
+    }
+    @When("I send a PUT request to update the status for the to-do item with ID {string} with empty body")
+    public void i_send_a_post_request_to_update_the_status_for_the_to_do_item_without_body(String id) {
+
+        // Send PUT request to update the doneStatus of the to-do item, capture the response status code
+        Response response = given()
+                .contentType("application/json")
+                .when()
+                .put("/todos/"+ id)
+                .then()
+                .extract()
+                .response();
+
+        responseBody = response.asString();
+        responseStatus = response.getStatusCode();
+
+    }
+    @Then("the API should return a validation error message")
+    public void the_api_should_return_a_validation_error_message() {
+        assertEquals(400, responseStatus); // Expecting a 400 Bad Request
+        JsonPath jsonResponse = new JsonPath(responseBody);
+        assertThat(jsonResponse.getString("errorMessages"),
+                is("[title : field is mandatory]"));
     }
 }

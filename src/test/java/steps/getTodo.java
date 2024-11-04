@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class getTodo {
     private String title ;
     private String doneStatus;
     private String description;
+    private String body;
     static {
         baseURI = "http://localhost:4567"; // Adjust as needed
     }
@@ -85,8 +87,6 @@ public class getTodo {
         todo = jsonResponse.getList("todos");
         // Check that the size of the list is exactly 1
         assertEquals(1, todo.size(), "Expected exactly one to-do item, but found " +  todo.size());
-
-
 
     }
 
@@ -163,5 +163,30 @@ public class getTodo {
         JsonPath jsonResponse = new JsonPath(responseBody);
         String errorMessage = jsonResponse.getString("errorMessages");
         assertThat("An error message should be present.", errorMessage, notNullValue());
+    }
+
+    @When("I send a malformed GET request with an invalid ID format")
+    public void get_request_sent_with_malformed_request(){
+        responseStatus = given()
+                .when()
+                .get("/todos/" + "string ID")
+                .getStatusCode();
+        responseBody = given()
+                .pathParam("id", "string ID")
+                .when()
+                .get("/todos/{id}")
+                .then()
+                .extract()
+                .body()
+                .asString();
+
+
+    }
+    @Then("the API should return an error")
+    public void the_response_should_return_an_error() {
+        assertEquals(404, responseStatus); // Expecting a 404
+        JsonPath jsonResponse = new JsonPath(responseBody);
+        assertThat(jsonResponse.getString("errorMessages"),
+                is("[Could not find an instance with todos/string ID]"));
     }
 }

@@ -1,106 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TodosTest" tests="33" skipped="0" failures="0" errors="0" timestamp="2024-11-05T18:23:48" hostname="Anjalis-MacBook-Air.local" time="0.297">
+<testsuite name="TodosTest" tests="33" skipped="0" failures="0" errors="0" timestamp="2024-11-05T19:03:16" hostname="Anjalis-MacBook-Air.local" time="0.237">
   <properties/>
-  <testcase name="testHeadTasksOfTodo()" classname="TodosTest" time="0.008"/>
-  <testcase name="testUpdateTodoTitle()" classname="TodosTest" time="0.009"/>
-  <testcase name="testGetTasksOfTodo()" classname="TodosTest" time="0.008"/>
-  <testcase name="testUpdateTodoWithID()" classname="TodosTest" time="0.008"/>
-  <testcase name="testHeadAllTodos()" classname="TodosTest" time="0.007"/>
-  <testcase name="testGetTodosByDoneStatusTrue()" classname="TodosTest" time="0.009"/>
-  <testcase name="testUpdateNonExistentTodo()" classname="TodosTest" time="0.009"/>
-  <testcase name="testDeleteNonExistentLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.008"/>
-  <testcase name="testCreateLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.008"/>
-  <testcase name="testHeadTodoById()" classname="TodosTest" time="0.008"/>
-  <testcase name="testCreateTodo()" classname="TodosTest" time="0.012"/>
-  <testcase name="testMalformedJsonPayload()" classname="TodosTest" time="0.012"/>
-  <testcase name="testGetAllTodos()" classname="TodosTest" time="0.01"/>
-  <testcase name="shouldRedirectToMainPage()" classname="TodosTest" time="0.009"/>
-  <testcase name="testUpdateTodoWithMissingTitleFieldFails()" classname="TodosTest" time="0.009"/>
-  <testcase name="testDeleteLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.009"/>
-  <testcase name="testDeleteTodo()" classname="TodosTest" time="0.009"/>
-  <testcase name="testCreateNewTaskOfTodo()" classname="TodosTest" time="0.007"/>
-  <testcase name="testUpdateTodoWithAllFields()" classname="TodosTest" time="0.007"/>
   <testcase name="testGetTasksofInvalidTodoIdFails()" classname="TodosTest" time="0.008"/>
-  <testcase name="testGetTodoById()" classname="TodosTest" time="0.008"/>
-  <testcase name="testCreateLinkWithInvalidCategoryId()" classname="TodosTest" time="0.008"/>
-  <testcase name="testGetTodosByDoneStatusFalse()" classname="TodosTest" time="0.019"/>
-  <testcase name="testUpdateTodoDoneStatusOnly()" classname="TodosTest" time="0.008"/>
+  <testcase name="testCreateTodo()" classname="TodosTest" time="0.008"/>
+  <testcase name="testCreateLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.01"/>
+  <testcase name="testGetTodoById()" classname="TodosTest" time="0.01"/>
+  <testcase name="testDeleteLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.012"/>
+  <testcase name="testGetAllTodos()" classname="TodosTest" time="0.008"/>
+  <testcase name="testGetTodosByDoneStatusFalse()" classname="TodosTest" time="0.017"/>
+  <testcase name="testMalformedJsonPayload()" classname="TodosTest" time="0.007"/>
+  <testcase name="testDeleteTaskOfTodo()" classname="TodosTest" time="0.006"/>
   <testcase name="testHeadCategoriesForTodo()" classname="TodosTest" time="0.007"/>
-  <testcase name="testCreateTodoWithInvalidDoneStatus()" classname="TodosTest" time="0.007"/>
-  <testcase name="testMalformedXmlPayload()" classname="TodosTest" time="0.006"/>
   <testcase name="testGetTasksofInvalidTodoIdPasses()" classname="TodosTest" time="0.006"/>
-  <testcase name="testUpdateTodoWithMissingTitleFieldPasses()" classname="TodosTest" time="0.007"/>
-  <testcase name="testDeleteTaskOfTodo()" classname="TodosTest" time="0.007"/>
-  <testcase name="testCreateTodoWithIncorrectId()" classname="TodosTest" time="0.009"/>
+  <testcase name="shouldRedirectToMainPage()" classname="TodosTest" time="0.008"/>
+  <testcase name="testCreateTodoWithInvalidDoneStatus()" classname="TodosTest" time="0.006"/>
+  <testcase name="testUpdateNonExistentTodo()" classname="TodosTest" time="0.006"/>
+  <testcase name="testHeadTasksOfTodo()" classname="TodosTest" time="0.006"/>
+  <testcase name="testGetTodosByDoneStatusTrue()" classname="TodosTest" time="0.006"/>
+  <testcase name="testHeadTodoById()" classname="TodosTest" time="0.005"/>
+  <testcase name="testGetTasksOfTodo()" classname="TodosTest" time="0.006"/>
+  <testcase name="testUpdateTodoWithMissingTitleFieldPasses()" classname="TodosTest" time="0.006"/>
+  <testcase name="testMalformedXmlPayload()" classname="TodosTest" time="0.006"/>
+  <testcase name="testCreateNewTaskOfTodo()" classname="TodosTest" time="0.005"/>
+  <testcase name="testHeadAllTodos()" classname="TodosTest" time="0.005"/>
+  <testcase name="testGetNonExistentTodo()" classname="TodosTest" time="0.006"/>
+  <testcase name="testUpdateTodoWithMissingTitleFieldFails()" classname="TodosTest" time="0.006"/>
+  <testcase name="testUpdateTodoWithAllFields()" classname="TodosTest" time="0.005"/>
+  <testcase name="testUpdateTodoWithID()" classname="TodosTest" time="0.005"/>
+  <testcase name="testCreateTodoWithIncorrectId()" classname="TodosTest" time="0.005"/>
+  <testcase name="testUpdateTodoTitle()" classname="TodosTest" time="0.006"/>
+  <testcase name="testUpdateTodoDoneStatusOnly()" classname="TodosTest" time="0.006"/>
+  <testcase name="testCreateLinkWithInvalidCategoryId()" classname="TodosTest" time="0.006"/>
+  <testcase name="testDeleteTodo()" classname="TodosTest" time="0.008"/>
   <testcase name="testGetCategoriesForTodo()" classname="TodosTest" time="0.007"/>
-  <testcase name="testGetNonExistentTodo()" classname="TodosTest" time="0.007"/>
+  <testcase name="testDeleteNonExistentLinkBetweenTodoAndCategory()" classname="TodosTest" time="0.006"/>
   <system-out><![CDATA[
 
 
-{"id":"85","title":"New Title","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"361"}]}
-
-
-{"projects":[{"id":"1","title":"Office Work","completed":"false","active":"false","description":"","tasks":[{"id":"2"},{"id":"86"}],"categories":[{"id":"359"},{"id":"34"},{"id":"334"},{"id":"224"},{"id":"226"},{"id":"331"},{"id":"343"},{"id":"354"},{"id":"329"},{"id":"349"},{"id":"358"},{"id":"210"},{"id":"337"},{"id":"342"},{"id":"39"},{"id":"352"},{"id":"340"},{"id":"222"},{"id":"27"},{"id":"28"},{"id":"336"},{"id":"350"},{"id":"341"},{"id":"44"},{"id":"330"},{"id":"204"},{"id":"207"},{"id":"229"},{"id":"351"},{"id":"328"},{"id":"346"},{"id":"20"},{"id":"202"},{"id":"33"},{"id":"215"},{"id":"227"},{"id":"339"},{"id":"355"},{"id":"338"},{"id":"40"},{"id":"24"},{"id":"214"},{"id":"22"},{"id":"43"},{"id":"201"},{"id":"200"},{"id":"45"},{"id":"344"},{"id":"211"},{"id":"19"},{"id":"46"},{"id":"203"},{"id":"42"},{"id":"18"},{"id":"335"},{"id":"41"},{"id":"347"},{"id":"221"},{"id":"206"},{"id":"218"},{"id":"31"},{"id":"345"},{"id":"216"},{"id":"357"},{"id":"35"},{"id":"353"},{"id":"223"},{"id":"199"},{"id":"228"},{"id":"333"},{"id":"37"},{"id":"30"},{"id":"23"},{"id":"198"},{"id":"213"},{"id":"16"},{"id":"219"},{"id":"220"},{"id":"26"},{"id":"217"},{"id":"17"},{"id":"38"},{"id":"348"},{"id":"32"},{"id":"205"},{"id":"208"},{"id":"356"},{"id":"36"},{"id":"47"},{"id":"212"},{"id":"21"},{"id":"29"},{"id":"209"}]}]}
-
-
-{"id":"87","title":" new title ","doneStatus":"false","description":"new description","tasksof":[{"id":"1"}],"categories":[{"id":"363"}]}
+{"id":"83","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu"}
 
 
 
 
 
-
-{"errorMessages":["Invalid GUID for -1 entity todo"]}
-
-
-{"errorMessages":["Could not find any instances with todos/91/categories/-1"]}
+{"todos":[{"id":"85","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"350"}]}]}
 
 
 
 
 
+{"todos":[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"87","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"352"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
 
 
-{"id":"95","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu"}
+{"todos":[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"88","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"353"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
+[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"88","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"353"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]
 
 
 Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
 
 
-{"todos":[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"97","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"372"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
-
-
-
-
-Response status code: 400
-Response body: {"errorMessages":["title : field is mandatory"]}
 
 
 
 
 
-
-
-
-
-
-
-{"id":"104","title":"Updated Title","doneStatus":"false","description":"Updated Description"}
-
-
-
-
-{"todos":[{"id":"106","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"380"}]}]}
-
-
-{"errorMessages":["Could not find thing matching value for Id"]}
-
-
-{"todos":[{"id":"108","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"382"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
-[{"id":"108","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"382"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]
-
-
-{"errorMessages":["title : field is mandatory"]}
 
 
 
@@ -108,25 +71,62 @@ Response body: {"errorMessages":["title : field is mandatory"]}
 {"errorMessages":["Failed Validation: doneStatus should be BOOLEAN"]}
 
 
-Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
+{"errorMessages":["Invalid GUID for -1 entity todo"]}
 
 
+
+
+
+
+
+
+{"projects":[{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"},{"id":"100"}],"categories":[{"id":"327"},{"id":"341"},{"id":"344"},{"id":"315"},{"id":"331"},{"id":"338"},{"id":"322"},{"id":"316"},{"id":"325"},{"id":"330"},{"id":"320"},{"id":"329"},{"id":"345"},{"id":"342"},{"id":"336"},{"id":"337"},{"id":"340"},{"id":"326"},{"id":"332"},{"id":"323"},{"id":"318"},{"id":"346"},{"id":"324"},{"id":"335"},{"id":"339"},{"id":"321"},{"id":"319"},{"id":"343"},{"id":"333"},{"id":"328"},{"id":"334"}]}]}
 
 
 Response status code: 400
 Response body: {"errorMessages":["title : field is mandatory"]}
 
 
+Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
 
+
+
+
+
+
+
+{"errorMessages":["Could not find an instance with todos/-1"]}
+
+
+Response status code: 400
+Response body: {"errorMessages":["title : field is mandatory"]}
+
+
+{"id":"107","title":"Updated Title","doneStatus":"false","description":"Updated Description"}
+
+
+{"id":"108","title":" new title ","doneStatus":"false","description":"new description","tasksof":[{"id":"1"}],"categories":[{"id":"372"}]}
 
 
 {"errorMessages":["No such todo entity instance with GUID or ID -1 found"]}
 
 
+{"id":"110","title":"New Title","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"374"}]}
+
+
+{"errorMessages":["title : field is mandatory"]}
+
+
+{"errorMessages":["Could not find thing matching value for Id"]}
+
+
+
+
+
 {"categories":[]}
 
 
-{"errorMessages":["Could not find an instance with todos/-1"]}
+{"errorMessages":["Could not find any instances with todos/116/categories/-1"]}
 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

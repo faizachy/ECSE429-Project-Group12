@@ -1,2 +1,20 @@
-ETodo ID: 1, Title: scan paperwork, Done Status: false, Description: 
-ETodo ID: 2, Title: file paperwork, Done Status: false, Description: 
+:Time taken to create link between todo and category: 3 ms
+,Time taken to update nonexistent todo: 4 ms
+,Time taken to update todo done status: 2 ms
+ Time taken to create todo: 4 ms
+9Time taken to create todo with invalid done status: 2 ms
+FTime taken to delete nonexistent link between todo and category: 1 ms
+	(Time taken to test malformed json: 2 ms
+
+,Time taken to create new task of todo: 1 ms
+'Time taken to test malformed xml: 2 ms
+&Time taken to update todo title: 2 ms
+:Time taken to delete link between todo and category: 1 ms
+ Time taken to delete todo: 7 ms
+)Time taken to delete tasks of todo: 1 ms
+ Time taken to update todo: 1 ms
+2Time taken to create todo with incorrect id: 4 ms
+:Time taken to update todo with missing title passes: 1 ms
+(Time taken to update todo with id: 1 ms
+9Time taken to update todo with missing title fails: 1 ms
+6Time taken to create link with invalid category: 3 ms

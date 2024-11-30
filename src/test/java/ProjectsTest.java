@@ -16,8 +16,6 @@ public class ProjectsTest {
     private HttpClient client;
     private ObjectMapper objectMapper;
 
-    private String savedTasksState;  // Variable to store saved state
-
     public static String categoryId = "0";
     public static String taskId = "0";
 

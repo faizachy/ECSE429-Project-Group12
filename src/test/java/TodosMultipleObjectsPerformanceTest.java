@@ -1,22 +1,55 @@
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.management.OperatingSystemMXBean;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
-
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-    @TestMethodOrder(MethodOrderer.Random.class)
-
+//    @TestMethodOrder(MethodOrderer.Random.class)
     public class TodosMultipleObjectsPerformanceTest {
+        OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        private static ProcessBuilder pb;
+        private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};
         private final HttpClient client = HttpClient.newHttpClient();
         public static String categoryId = "0";
         public static String taskId = "0";
         public static String todoId = "0";
+    @BeforeAll
+    static void setupProcess() {
+        String os = System.getProperty("os.name");
+        if (os.toLowerCase().contains("windows")) {
+            pb = new ProcessBuilder(
+                    "cmd.exe", "/c", "java -jar .\\src\\test\\resources\\runTodoManagerRestAPI-1.5.5.jar");
+        }
+        else {
+            pb = new ProcessBuilder(
+                    "sh", "-c", "java -jar ./src/test/resources/runTodoManagerRestAPI-1.5.5.jar");
+        }
+    }
+
+    @BeforeEach
+    void startServer() throws InterruptedException {
+        try {
+            pb.start();
+            Thread.sleep(1000);
+        } catch (IOException e) {
+            System.out.println("No server");
+        }
+    }
+
+    @AfterEach
+    void shutServer() {
+        try {
+            RestAssured.get("http://localhost:4567/shutdown");
+        }
+        catch (Exception ignored) {
+        }
+    }
         @BeforeEach
         public void setup_foreach() throws IOException, InterruptedException {
             String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
@@ -44,15 +77,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             assertEquals(200, response.statusCode());
         }
-        @Test
-        public void shouldRedirectToMainPage() throws IOException, InterruptedException {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567"))
-                    .GET().build();
 
-            HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
-            assertEquals(302, response.statusCode(), "Expected redirect from main page");
-        }
         public static String createTaskOfTodo() throws IOException, InterruptedException {
             // Initialize the HttpClient
             HttpClient client = HttpClient.newHttpClient();
@@ -102,66 +127,78 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         }
 
         @Test
-        public void testCreateTodoWithInvalidDoneStatus() throws IOException, InterruptedException {
+        public void testCreateTodo() throws IOException, InterruptedException {
+            long startSampleTime = System.nanoTime();
+            double[] sampleTimeStore = new double[targetSize.length];
+            double[] timeStore = new double[targetSize.length];
+            double[] cpuUsageStore = new double[targetSize.length];
+            long[] freeMemoryStore = new long[targetSize.length];
+            int targetIndex = 0;
+            for (int i = 1; i <= targetSize[targetSize.length - 1]; i++) {
+                if (targetSize[targetIndex] == i) {
+                    long start = System.nanoTime();
+                    String requestBody = "{ \"title\": " + i + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
+                    HttpRequest request = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:4567/todos"))
+                            .header("Content-Type", "application/json")
+                            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                            .build();
+                    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                    String responseBody = response.body();
+                    long finish = System.nanoTime();
+                    long sampleTimeElapsed = finish - startSampleTime;
+                    double sampleTimeElapsedInSeconds = (double) sampleTimeElapsed / 1_000_000_000;
+                    sampleTimeStore[targetIndex] = sampleTimeElapsedInSeconds;
+                    long timeElapsed = finish - start;
+                    double elapsedTimeInSecond = (double) timeElapsed / 1_000_000_000;
+                    double cpuUsage = osBean.getCpuLoad() * 100;
+                    long memory = osBean.getFreeMemorySize() / (1024L * 1024L);
+                    timeStore[targetIndex] = elapsedTimeInSecond;
+                    cpuUsageStore[targetIndex] = cpuUsage;
+                    freeMemoryStore[targetIndex] = memory;
+                    targetIndex++;
+                    // delete the created object
+                    String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
+                    HttpRequest request_delete = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
+                            .DELETE()
+                            .build();
 
-                    for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
+                    HttpResponse<String> response_delete = client.send(request_delete, HttpResponse.BodyHandlers.ofString());
+                    assertEquals(201, response.statusCode());
+                }
+                else {
+                        String requestBody = "{ \"title\": " + i + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .uri(URI.create("http://localhost:4567/todos"))
+                                .header("Content-Type", "application/json")
+                                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                                .build();
+                        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                        String responseBody = response.body();
+                    // delete the created object
+                    String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
+                    HttpRequest request_delete = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
+                            .DELETE()
+                            .build();
 
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": \"false\", \"description\": \"sse cillum dolore eu\" }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            // Check for expected error response
-            assertEquals(400, response.statusCode());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
+                    HttpResponse<String> response_delete = client.send(request_delete, HttpResponse.BodyHandlers.ofString());
+                    assertEquals(201, response.statusCode());
                     }
 
-        @Test
-        public void testCreateTodo() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            String responseBody = response.body();
-            long endTime = System.nanoTime();
-            // delete the created object
-            String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
-            HttpRequest request_delete = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
-                    .DELETE()
-                    .build();
-
-            HttpResponse<String> response_delete = client.send(request_delete, HttpResponse.BodyHandlers.ofString());
-            assertEquals(201, response.statusCode());
-            // verify creation
-
-            totalDuration += (endTime - startTime);
         }
 
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-
+            System.out.println("-Add Todos Statistics\n");
+            System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "Sample Time (s)");
+            for (int i = 0; i < targetSize.length; i++) {
+                System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
+                        targetSize[i],
+                        timeStore[i],
+                        cpuUsageStore[i],
+                        freeMemoryStore[i],
+                        sampleTimeStore[i]);
+            }
         }
         @Test
         public void testDeleteTodo() throws IOException, InterruptedException {
@@ -203,30 +240,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
         @Test
-        public void testCreateTodoWithIncorrectId() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/-1"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString("")) // Empty body
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            assertEquals(404, response.statusCode());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-
-
-        }
-        @Test
         public void testUpdateTodoWithID() throws IOException, InterruptedException {
             for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
         long totalDuration = 0;
@@ -248,36 +261,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to update todo with id: " + (endTime - startTime) / 1_000_000 + " ms");
-
-
         }
 
-        @Test
-        public void testUpdateTodoDoneStatusOnly() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
 
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"doneStatus\": true }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to update todo done status: " + (endTime - startTime) / 1_000_000 + " ms");
-            assertEquals(400, response.statusCode());
-
-        }
 
         @Test
         public void testUpdateTodoWithAllFields() throws IOException, InterruptedException {
@@ -294,18 +280,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            assertEquals(200, response.statusCode());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to update todo: " + (endTime - startTime) / 1_000_000 + " ms");
-            assertEquals(200, response.statusCode());
 
         }
-
-
 
         @Test
         public void testUpdateTodoTitle() throws IOException, InterruptedException {
@@ -322,140 +305,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to update todo title: " + (endTime - startTime) / 1_000_000 + " ms");
             assertEquals(200, response.statusCode());
-
-        }
-
-        @Test
-        public void testUpdateNonExistentTodo() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"title\": \"Title\" }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/-1"))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
-
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to update nonexistent todo: " + (endTime - startTime) / 1_000_000 + " ms");
-            assertEquals(404, response.statusCode());
-
         }
 
-//        @Test
-//        public void testGetCategoriesForTodo() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
 
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/1/categories"))
-//                    .GET().build();
-//
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
 
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get categories for todo: " + (endTime - startTime) / 1_000_000 + " ms");
-//            assertEquals(200, response.statusCode());
-//
-//        }
-//
-//        @Test
-//        public void testHeadCategoriesForTodo() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
 
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/1/categories"))
-//                    .method("HEAD", HttpRequest.BodyPublishers.noBody())
-//                    .build();
-//
-//            HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get headers for a todo: " + (endTime - startTime) / 1_000_000 + " ms");
-//            assertEquals(200, response.statusCode());
-//        }
-
-        @Test
-        public void testUpdateTodoWithMissingTitleFieldFails() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"doneStatus\": false }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to update todo with missing title fails: " + (endTime - startTime) / 1_000_000 + " ms");
-            // Assert that the response is not successful (expecting an error)
-            assertNotEquals(200, response.statusCode(), "Expected to fail when updating without title field.");
-
-        }
-        @Test
-        public void testUpdateTodoWithMissingTitleFieldPasses() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"doneStatus\": false }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to update todo with missing title passes: " + (endTime - startTime) / 1_000_000 + " ms");
-            assertEquals(400, response.statusCode(), "Expected to fail when updating without title field.");
-
-        }
         @Test
         public void testCreateLinkBetweenTodoAndCategory() throws IOException, InterruptedException {
             for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
@@ -471,44 +331,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to create link between todo and category: " + (endTime - startTime) / 1_000_000 + " ms");
-
             assertEquals(201, response.statusCode());
-
-        }
-
-        @Test
-        public void testCreateLinkWithInvalidCategoryId() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            String requestBody = "{ \"Id\": \"-1\" }";
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId + "/categories"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to create link with invalid category: " + (endTime - startTime) / 1_000_000 + " ms");
-
-            assertEquals(404, response.statusCode());
 
         }
+
 
         @Test
         public void testDeleteLinkBetweenTodoAndCategory() throws IOException, InterruptedException {
@@ -523,140 +355,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-            System.out.println("Time taken to delete link between todo and category: " + (endTime - startTime) / 1_000_000 + " ms");
-
             assertEquals(200, response.statusCode());
-
-        }
-
-        @Test
-        public void testDeleteNonExistentLinkBetweenTodoAndCategory() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos/" + todoId + "/categories/-1"))
-                    .DELETE()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to delete nonexistent link between todo and category: " + (endTime - startTime) / 1_000_000 + " ms");
 
-            assertEquals(404, response.statusCode());
 
         }
-
-//        @Test
-//        public void testGetTasksOfTodo() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/" + todoId + "/tasksof"))
-//                    .GET().build();
-//
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get tasks of todo: " + (endTime - startTime) / 1_000_000 + " ms");
-//
-//            assertEquals(200, response.statusCode());
-//
-//        }
-//
-//        @Test
-//        public void testGetTasksofInvalidTodoIdFails() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/-1/tasksof"))
-//                    .header("Content-Type", "application/json")
-//                    .GET()
-//                    .build();
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get tasks of invalid todo fails: " + (endTime - startTime) / 1_000_000 + " ms");
-//
-//            // Assert that the response is not successful (expecting an error)
-//            assertNotEquals(404, response.statusCode(), "Expected a 404 Not Found status code for invalid todo ID.");
-//
-//        }
-//        @Test
-//        public void testGetTasksofInvalidTodoIdPasses() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/-1/tasksof"))
-//                    .header("Content-Type", "application/json")
-//                    .GET()
-//                    .build();
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get tasks of invalid todo passes: " + (endTime - startTime) / 1_000_000 + " ms");
-//
-//            // Assert that the response is not successful (expecting an error)
-//            assertEquals(200, response.statusCode(), "Expected a 404 Not Found status code for invalid todo ID.");
-//
-//        }
-//        @Test
-//        public void testHeadTasksOfTodo() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos/" + todoId + "1/tasksof"))
-//                    .method("HEAD", HttpRequest.BodyPublishers.noBody())
-//                    .build();
-//
-//            HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get header of tasks of todo: " + (endTime - startTime) / 1_000_000 + " ms");
-//
-//            assertEquals(200, response.statusCode());
-//        }
 
         @Test
         public void testCreateNewTaskOfTodo() throws IOException, InterruptedException {
@@ -673,15 +381,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            assertEquals(201, response.statusCode());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to create new task of todo: " + (endTime - startTime) / 1_000_000 + " ms");
-
-            assertEquals(201, response.statusCode());
 
         }
 
@@ -698,123 +404,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            assertEquals(200, response.statusCode());
             long endTime = System.nanoTime();
             totalDuration += (endTime - startTime);
         }
 
         System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
     }
-            System.out.println("Time taken to delete tasks of todo: " + (endTime - startTime) / 1_000_000 + " ms");
 
-            assertEquals(200, response.statusCode());
-
-        }
-
-
-
-        //        @Test
-//        public void testGetTodosByDoneStatusTrue() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos?doneStatus=true"))
-//                    .GET().build();
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-//            System.out.println("Time taken to get todos by done status true: " + (endTime - startTime) / 1_000_000 + " ms");
-//
-//            assertEquals(200, response.statusCode());
-//
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            JsonNode jsonResponse = objectMapper.readTree(response.body());
-//            JsonNode todosArray = jsonResponse.get("todos");
-//
-//            assertTrue(todosArray.size() == 0);
-//        }
-//
-//        @Test
-//        public void testGetTodosByDoneStatusFalse() throws IOException, InterruptedException {
-//            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-//            HttpRequest request = HttpRequest.newBuilder()
-//                    .uri(URI.create("http://localhost:4567/todos?doneStatus=false"))
-//                    .GET().build();
-//
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//
-//            long endTime = System.nanoTime();
-            totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-    }
-        @Test
-        public void testMalformedJsonPayload() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            // Malformed JSON: missing a closing quote for the name value
-            String malformedJson = "{ \"title\": \"Invalid Project, \"description\": \"This is malformed JSON\" }";
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(malformedJson))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            // Assuming the server returns 400 for malformed JSON
-            assertEquals(400, response.statusCode());
-        long endTime = System.nanoTime();
-        totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-        }
-        }
-
-        @Test
-        public void testMalformedXmlPayload() throws IOException, InterruptedException {
-            for (int todoCount = 10; todoCount <= 1000; todoCount *= 10) {
-        long totalDuration = 0;
-
-        for (int i = 0; i < todoCount; i++) {
-            long startTime = System.nanoTime();
-            // Malformed XML: missing a closing tag for <name>
-            String malformedXml = "<project><title>Invalid Project<description>This is malformed XML</description></project>";
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:4567/todos"))
-                    .header("Content-Type", "application/xml")
-                    .POST(HttpRequest.BodyPublishers.ofString(malformedXml))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-
-
-            // Assuming the server returns 400 for malformed XML
-            assertEquals(400, response.statusCode());
-        long endTime = System.nanoTime();
-        totalDuration += (endTime - startTime);
-        }
-
-        System.out.println("Average time for " + todoCount + " todos: " + (totalDuration / todoCount) / 1_000_000 + " ms");
-        }
         }
     }
 

@@ -1,204 +1,142 @@
 import com.sun.management.OperatingSystemMXBean;
-import io.restassured.response.Response;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.*;
-
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
-import java.util.List;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.*;
 
 public class categoriesPerformance {
 
-    private static final String JSON_CONTENT_TYPE = "application/json";
+    private final String json = "application/json";
+    private Response response;
     private String newCategoryId;
-    private OperatingSystemMXBean osBean;
+
+    OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};
-    private static final String BASE_URL = "http://localhost:4567/categories";
 
-    // Create a category
-    public static Response createCategory(String title, String description) {
-        String body = String.format("{\"title\":\"%s\", \"description\":\"%s\"}", title, description);
-        return RestAssured.given()
-                .header("Content-Type", JSON_CONTENT_TYPE)
-                .body(body)
-                .post(BASE_URL);
+    // Helper method to execute POST, PUT, DELETE requests
+    private Response executeRequest(String method, String body, String url) {
+        switch (method) {
+            case "POST":
+                return RestAssured.given().header("Content-Type", json).body(body).post(url);
+            case "PUT":
+                return RestAssured.given().header("Content-Type", json).body(body).put(url);
+            case "DELETE":
+                return RestAssured.given().delete(url);
+            default:
+                throw new IllegalArgumentException("Invalid method: " + method);
+        }
     }
 
-    // Update a category
-    public static Response updateCategory(String categoryId, String newTitle, String newDescription) {
-        String body = String.format("{\"title\":\"%s\", \"description\":\"%s\"}", newTitle, newDescription);
-        return RestAssured.given()
-                .header("Content-Type", JSON_CONTENT_TYPE)
-                .body(body)
-                .put(BASE_URL + "/" + categoryId);
+    // Helper method to track performance
+    private void trackPerformance(int size, long startSampleTime, double[] sampleTimeStore, double[] timeStore,
+                                  double[] cpuUsageStore, long[] freeMemoryStore, int targetIndex, String body, String url, String method) {
+        long start = System.nanoTime();
+        response = executeRequest(method, body, url);
+        long finish = System.nanoTime();
+        long sampleTimeElapsed = finish - startSampleTime;
+        double sampleTimeElapsedInSeconds = (double) sampleTimeElapsed / 1_000_000_000;
+        sampleTimeStore[targetIndex] = sampleTimeElapsedInSeconds;
+
+        long timeElapsed = finish - start;
+        double elapsedTimeInSecond = (double) timeElapsed / 1_000_000_000;
+        double cpuUsage = osBean.getCpuLoad() * 100;
+        long memory = osBean.getFreeMemorySize() / (1024L * 1024L);
+        timeStore[targetIndex] = elapsedTimeInSecond;
+        cpuUsageStore[targetIndex] = cpuUsage;
+        freeMemoryStore[targetIndex] = memory;
     }
 
-    // Delete a category
-    public static Response deleteCategory(String categoryId) {
-        return RestAssured.given()
-                .delete(BASE_URL + "/" + categoryId);
-    }
+    // Helper method to print performance statistics with vertical lines
+    private void printStats(String operation, double[] timeStore, double[] cpuUsageStore, long[] freeMemoryStore, double[] sampleTimeStore) {
+        System.out.println("\nPerformance Stats for " + operation + " Categories");
+        System.out.println("____________________________________________________________________________________________________");
+        System.out.printf("| %-12s | %-18s | %-18s | %-18s | %-18s |\n", "Size", "Time (s)", "CPU Usage (%)", "Memory (MB)", "Sample Time (s)");
+        System.out.println("|--------------|--------------------|--------------------|--------------------|--------------------|");
 
-    @BeforeAll
-    public static void setup() {
-        RestAssured.baseURI = "http://localhost:4567";
-    }
-
-    @BeforeEach
-    public void init() {
-        // Initialize OS bean for monitoring CPU/memory usage
-        osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        for (int i = 0; i < targetSize.length; i++) {
+            System.out.printf("| %-12d | %-18.6f | %-18.2f | %-18d | %-18.6f |\n",
+                    targetSize[i],
+                    timeStore[i],
+                    cpuUsageStore[i],
+                    freeMemoryStore[i],
+                    sampleTimeStore[i]);
+        }
+        System.out.println("____________________________________________________________________________________________________");
     }
 
     @Test
     public void addCategoryPerformance() {
-        List<Metric> metrics = new ArrayList<>();
+        double[] sampleTimeStore = new double[targetSize.length];
+        double[] timeStore = new double[targetSize.length];
+        double[] cpuUsageStore = new double[targetSize.length];
+        long[] freeMemoryStore = new long[targetSize.length];
         int targetIndex = 0;
+        long startSampleTime = System.nanoTime();
 
         for (int i = 1; i <= targetSize[targetSize.length - 1]; i++) {
-            long startSampleTime = System.nanoTime();
-            long start = System.nanoTime();
-            Response response = createCategory("Category " + i, "");
-            newCategoryId = response.jsonPath().getString("id");
-            long finish = System.nanoTime();
+            String body = "{\"title\":\"" + i + "\",\"description\":\"\"}";
+            String url = "http://localhost:4567/categories";
 
             if (targetSize[targetIndex] == i) {
-                Metric metric = recordPerformanceMetrics(startSampleTime, start, finish);
-                metrics.add(metric);
+                trackPerformance(i, startSampleTime, sampleTimeStore, timeStore, cpuUsageStore, freeMemoryStore, targetIndex, body, url, "POST");
                 targetIndex++;
+            } else {
+                executeRequest("POST", body, url);
             }
         }
 
-        printPerformanceStats(metrics);
+        printStats("Add", timeStore, cpuUsageStore, freeMemoryStore, sampleTimeStore);
     }
 
     @Test
     public void deleteCategoryPerformance() {
-        List<Metric> metrics = new ArrayList<>();
+        double[] sampleTimeStore = new double[targetSize.length];
+        double[] timeStore = new double[targetSize.length];
+        double[] cpuUsageStore = new double[targetSize.length];
+        long[] freeMemoryStore = new long[targetSize.length];
         int targetIndex = 0;
+        long startSampleTime = System.nanoTime();
 
         for (int i = 1; i <= targetSize[targetSize.length - 1]; i++) {
-            Response response = createCategory("Category " + i, "");
-            newCategoryId = response.jsonPath().getString("id");
-
-            long startSampleTime = System.nanoTime();
-            long start = System.nanoTime();
-            deleteCategory(newCategoryId);
-            long finish = System.nanoTime();
+            String body = "{\"title\":\"" + i + "\",\"description\":\"\"}";
+            String url = "http://localhost:4567/categories";
+            response = executeRequest("POST", body, url);
+            newCategoryId = response.jsonPath().get("id");
 
             if (targetSize[targetIndex] == i) {
-                Metric metric = recordPerformanceMetrics(startSampleTime, start, finish);
-                metrics.add(metric);
+                url = "http://localhost:4567/categories/" + newCategoryId;
+                trackPerformance(i, startSampleTime, sampleTimeStore, timeStore, cpuUsageStore, freeMemoryStore, targetIndex, body, url, "DELETE");
                 targetIndex++;
             }
         }
 
-        printPerformanceStats(metrics);
+        printStats("Delete", timeStore, cpuUsageStore, freeMemoryStore, sampleTimeStore);
     }
 
     @Test
     public void changeCategoryPerformance() {
-        List<Metric> metrics = new ArrayList<>();
+        double[] sampleTimeStore = new double[targetSize.length];
+        double[] timeStore = new double[targetSize.length];
+        double[] cpuUsageStore = new double[targetSize.length];
+        long[] freeMemoryStore = new long[targetSize.length];
         int targetIndex = 0;
+        long startSampleTime = System.nanoTime();
 
         for (int i = 1; i <= targetSize[targetSize.length - 1]; i++) {
-            Response response = createCategory("Category " + i, "");
-            newCategoryId = response.jsonPath().getString("id");
-
-            long startSampleTime = System.nanoTime();
-            long start = System.nanoTime();
-            updateCategory(newCategoryId, "Updated Category " + i, "Updated Description");
-            long finish = System.nanoTime();
+            String body = "{\"title\":\"" + i + "\",\"description\":\"\"}";
+            String url = "http://localhost:4567/categories";
+            response = executeRequest("POST", body, url);
+            newCategoryId = response.jsonPath().get("id");
 
             if (targetSize[targetIndex] == i) {
-                Metric metric = recordPerformanceMetrics(startSampleTime, start, finish);
-                metrics.add(metric);
+                body = "{\"title\": \"new category\"}";
+                url = "http://localhost:4567/categories/" + newCategoryId;
+                trackPerformance(i, startSampleTime, sampleTimeStore, timeStore, cpuUsageStore, freeMemoryStore, targetIndex, body, url, "PUT");
                 targetIndex++;
             }
         }
 
-        printPerformanceStats(metrics);
-    }
-
-    // Helper method to record performance metrics
-    private Metric recordPerformanceMetrics(long startSampleTime, long start, long finish) {
-        long sampleTimeElapsed = finish - startSampleTime;
-        double sampleTimeElapsedInSeconds = (double) sampleTimeElapsed / 1_000_000_000;
-
-        long timeElapsed = finish - start;
-        double elapsedTimeInSeconds = (double) timeElapsed / 1_000_000_000;
-
-        double cpuUsage = osBean.getCpuLoad() * 100;
-        long memory = osBean.getFreeMemorySize() / (1024L * 1024L); // Convert to MB
-
-        return new Metric(elapsedTimeInSeconds, cpuUsage, memory, sampleTimeElapsedInSeconds);
-    }
-
-    // Helper method to print performance statistics
-    private void printPerformanceStats(List<Metric> metrics) {
-        System.out.println("---------Performance Statistics---------");
-        System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "Sample Time (s)");
-
-        double totalTime = 0;
-        double totalCpuUsage = 0;
-        double totalMemory = 0;
-        double totalSampleTime = 0;
-
-        for (int i = 0; i < metrics.size(); i++) {
-            Metric metric = metrics.get(i);
-            totalTime += metric.getTime();
-            totalCpuUsage += metric.getCpuUsage();
-            totalMemory += metric.getMemory();
-            totalSampleTime += metric.getSampleTime();
-
-            System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
-                    targetSize[i],
-                    metric.getTime(),
-                    metric.getCpuUsage(),
-                    metric.getMemory(),
-                    metric.getSampleTime());
-        }
-
-        // Print averages
-        System.out.println("\n---------Average Statistics---------");
-        System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "AVERAGE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "Sample Time (s)");
-        System.out.printf("%-10s %-20f %-20f %-20f %-20f%n", "AVERAGE",
-                totalTime / metrics.size(),
-                totalCpuUsage / metrics.size(),
-                totalMemory / metrics.size(),
-                totalSampleTime / metrics.size());
-
-        System.out.println("-----------------------------------------");
-    }
-
-    // Metric class to hold individual performance data
-    public static class Metric {
-        private double time;
-        private double cpuUsage;
-        private long memory;
-        private double sampleTime;
-
-        public Metric(double time, double cpuUsage, long memory, double sampleTime) {
-            this.time = time;
-            this.cpuUsage = cpuUsage;
-            this.memory = memory;
-            this.sampleTime = sampleTime;
-        }
-
-        public double getTime() {
-            return time;
-        }
-
-        public double getCpuUsage() {
-            return cpuUsage;
-        }
-
-        public long getMemory() {
-            return memory;
-        }
-
-        public double getSampleTime() {
-            return sampleTime;
-        }
+        printStats("Change", timeStore, cpuUsageStore, freeMemoryStore, sampleTimeStore);
     }
 }
+

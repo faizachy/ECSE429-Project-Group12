@@ -4,14 +4,17 @@
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
 Update Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.005957             0.000000             70                   0.005957            
-_10         0.008918             52.134541            160                  1.951622            
-_50         0.000765             67.213115            148                  2.027405            
-_100        0.000424             53.333333            165                  2.104673            
-_250        0.001135             67.326733            170                  2.230348            
-_500        0.000308             57.657658            150                  2.372609            
+_1          0.003115             0.000000             53                   0.003116            
+_10         0.001211             52.882883            157                  1.414329            
+_50         0.000498             77.083333            140                  1.472915            
+_100        0.000467             74.468085            180                  1.533378            
+_250        0.000368             62.195122            163                  1.638633            
+_500        0.000378             NaN                  146                  1.766626            
+_1000       0.000225             NaN                  148                  1.918766            
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
 ¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
 ¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
 ¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
@@ -20,12 +23,14 @@
 ¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
 Add Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.001045             59.375000            150                  0.001046            
-_10         0.000463             31.578947            150                  0.139606            
-_50         0.001488             26.305609            104                  0.794363            
-_100        0.001264             27.958834            124                  1.527546            
-_250        0.000394             28.962054            111                  3.778166            
-_500        0.001014             27.285083            71                   7.475034            
+_1          0.001576             NaN                  140                  0.001578            
+_10         0.000408             NaN                  138                  0.138928            
+_50         0.001243             55.811138            161                  0.718168            
+_100        0.000552             33.812950            197                  1.422612            
+_250        0.001121             25.767226            174                  3.607880            
+_500        0.000827             28.884181            178                  7.190751            
+_1000       0.000957             23.725455            115                  14.215376           
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
@@ -34,9 +39,10 @@
 «Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
 Delete Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.000527             39.130435            47                   0.001652            
-_10         0.000477             NaN                  62                   0.151253            
-_50         0.000367             NaN                  64                   0.780759            
-_100        0.000513             28.347107            45                   1.524733            
-_250        0.000636             27.822365            59                   3.875261            
-_500        0.000443             41.595814            76                   7.719927            
+_1          0.000474             47.619048            109                  0.001575            
+_10         0.000373             25.233645            75                   0.137085            
+_50         0.000561             27.777778            51                   0.753467            
+_100        0.000467             26.108374            57                   1.527635            
+_250        0.000639             30.682459            77                   3.770814            
+_500        0.001111             27.357280            83                   7.719193            
+_1000       0.000615             26.933815            62                   15.425548           

@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //    @TestMethodOrder(MethodOrderer.Random.class)
     public class TodosMultipleObjectsPerformanceTest {
     OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-    private final int[] targetSize = {1, 10, 50, 100, 250, 500};
+    private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};
     private final HttpClient client = HttpClient.newHttpClient();
     public static String categoryId = "0";
     public static String taskId = "0";

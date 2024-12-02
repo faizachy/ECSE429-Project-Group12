@@ -1,0 +1,42 @@
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Categories_SampleTime_vs_Size.png
+Update Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.005957             0.000000             70                   0.005957            
+_10         0.008918             52.134541            160                  1.951622            
+_50         0.000765             67.213115            148                  2.027405            
+_100        0.000424             53.333333            165                  2.104673            
+_250        0.001135             67.326733            170                  2.230348            
+_500        0.000308             57.657658            150                  2.372609            
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+¨Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
+Add Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.001045             59.375000            150                  0.001046            
+_10         0.000463             31.578947            150                  0.139606            
+_50         0.001488             26.305609            104                  0.794363            
+_100        0.001264             27.958834            124                  1.527546            
+_250        0.000394             28.962054            111                  3.778166            
+_500        0.001014             27.285083            71                   7.475034            
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+«Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+Delete Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.000527             39.130435            47                   0.001652            
+_10         0.000477             NaN                  62                   0.151253            
+_50         0.000367             NaN                  64                   0.780759            
+_100        0.000513             28.347107            45                   1.524733            
+_250        0.000636             27.822365            59                   3.875261            
+_500        0.000443             41.595814            76                   7.719927            

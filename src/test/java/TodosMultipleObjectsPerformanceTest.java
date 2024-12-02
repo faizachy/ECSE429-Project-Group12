@@ -2,6 +2,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.management.OperatingSystemMXBean;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URI;
@@ -13,6 +15,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import javax.imageio.ImageIO;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 //    @TestMethodOrder(MethodOrderer.Random.class)
     public class TodosMultipleObjectsPerformanceTest {
@@ -203,6 +208,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                         .build();
                 HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
                 assertEquals(201, response.statusCode());
+
+                generateGraph("Add", targetSize, cumulativeTimeStore);
             } else {
                 try {
                     Thread.sleep(10);
@@ -290,6 +297,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
+                generateGraph("Delete", targetSize, cumulativeTimeStore);
             } else {
                 try {
                     Thread.sleep(10);
@@ -366,6 +374,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
+                generateGraph("Update", targetSize, cumulativeTimeStore);
 
             } else {
                 String requestBody = "{ \"title\": \"Updated Title\", \"doneStatus\": false, \"description\": \"Updated Description\" }";

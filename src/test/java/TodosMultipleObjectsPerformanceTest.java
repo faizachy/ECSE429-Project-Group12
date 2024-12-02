@@ -8,7 +8,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import static org.junit.jupiter.api.Assertions.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 //    @TestMethodOrder(MethodOrderer.Random.class)
     public class TodosMultipleObjectsPerformanceTest {
@@ -106,7 +110,53 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals(201, response.statusCode());
         return id;
     }
+    // Helper method to generate the graph using JFreeChart and save it as PNG
+    private void generateGraph(String operation, int[] targetSize, double[] sampleTimeStore) {
+        // Create a series of data points
+        XYSeries series = new XYSeries("Sample Time");
+        for (int i = 0; i < targetSize.length; i++) {
+            series.add(targetSize[i], sampleTimeStore[i]);
+        }
 
+        // Create a dataset from the series
+        XYSeriesCollection dataset = new XYSeriesCollection(series);
+
+        // Create the chart
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                operation + " Categories - Sample Time vs Category Size",  // Chart title
+                "Category Size",  // X-axis label
+                "Sample Time (s)",  // Y-axis label
+                dataset,  // Dataset
+                PlotOrientation.VERTICAL,  // Plot orientation
+                true,  // Legend
+                true,  // Tooltips
+                false
+        );
+
+        // Save the chart to a file
+        saveChartToFile(chart, operation);
+    }
+
+    private void saveChartToFile(JFreeChart chart, String operation) {
+        try {
+            // Define the file path
+            String directoryPath = "./src/test/java/performanceTests/graphs/";
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();  // Create the directory if it doesn't exist
+            }
+
+            // Define the file name
+            String fileName = operation + "_Categories_SampleTime_vs_Size.png";
+            File file = new File(directory, fileName);
+
+            // Save the chart as a PNG image
+            ImageIO.write(chart.createBufferedImage(800, 600), "PNG", file);
+            System.out.println("Graph saved to: " + file.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Test
     public void testCreateTodo() throws IOException, InterruptedException {
         long testStartTime = System.nanoTime();

@@ -160,7 +160,7 @@ public class categoriesPerformance {
         for (int i = 1; i <= targetSize[targetSize.length - 1]; i++) {
             String body = "{\"title\":\"" + i + "\",\"description\":\"\"}";
             String url = "http://localhost:4567/categories";
-            response = executeRequest("POST", body, url);
+            response = executeRequest("DELETE", body, url);
             newCategoryId = response.jsonPath().get("id");
 
             if (targetSize[targetIndex] == i) {

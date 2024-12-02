@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UnknownClass" tests="43" skipped="0" failures="1" errors="0" timestamp="2024-11-05T19:03:13" hostname="Anjalis-MacBook-Air.local" time="1.993">
+<testsuite name="UnknownClass" tests="43" skipped="0" failures="1" errors="0" timestamp="2024-12-01T19:42:36" hostname="Anjalis-Air.ht.home" time="2.218">
   <properties/>
-  <testcase name="Adding a new to-do item" classname="UnknownClass" time="1.1"/>
-  <testcase name="Attempting to add a new to-do item without a title" classname="UnknownClass" time="0.027"/>
-  <testcase name="Attempting to add a new to-do item with a malformed JSON request" classname="UnknownClass" time="0.017"/>
-  <testcase name="Normal Flow - Creating a new category" classname="UnknownClass" time="0.03"/>
-  <testcase name="Alternate Flow - Creating a new category" classname="UnknownClass" time="0.038"/>
-  <testcase name="Error Flow - Creating a new category" classname="UnknownClass" time="0.017"/>
-  <testcase name="Creating a new project" classname="UnknownClass" time="0.07"/>
-  <testcase name="Attempting to add a new project item with a new title and description" classname="UnknownClass" time="0.035"/>
-  <testcase name="Attempting to add a new project item with a malformed JSON request" classname="UnknownClass" time="0.01"/>
-  <testcase name="Normal Flow - Delete a specific category using id" classname="UnknownClass" time="0.014"/>
-  <testcase name="Alternate Flow - Delete category without id" classname="UnknownClass" time="0.012"/>
-  <testcase name="Error Flow - Delete a category with non-existent id" classname="UnknownClass" time="0.009"/>
-  <testcase name="Delete a specific project item" classname="UnknownClass" time="0.026"/>
-  <testcase name="Alternate Flow - Delete project without id" classname="UnknownClass" time="0.019"/>
-  <testcase name="Error Flow - Delete a project with non-existent id" classname="UnknownClass" time="0.02"/>
-  <testcase name="Delete a specific to-do item" classname="UnknownClass" time="0.027"/>
-  <testcase name="Attempt to delete a non-existing to-do item" classname="UnknownClass" time="0.016"/>
-  <testcase name="Attempt to delete with a malformed ID" classname="UnknownClass" time="0.014"/>
-  <testcase name="Retrieve list of all project items" classname="UnknownClass" time="0.05"/>
-  <testcase name="Retrieve a specific project item by ID" classname="UnknownClass" time="0.018"/>
-  <testcase name="Retrieve list of all to-do items" classname="UnknownClass" time="0.021"/>
-  <testcase name="Retrieve a specific to-do item by ID" classname="UnknownClass" time="0.013"/>
-  <testcase name="Normal Flow - Get all categories" classname="UnknownClass" time="0.011"/>
-  <testcase name="Alternate flow - Get a specific category" classname="UnknownClass" time="0.014"/>
-  <testcase name="Error Flow - Get a category with a non-existent id" classname="UnknownClass" time="0.011"/>
-  <testcase name="Retrieve details of an existing project item" classname="UnknownClass" time="0.025"/>
-  <testcase name="Attempt to retrieve a non-existent project item" classname="UnknownClass" time="0.018"/>
-  <testcase name="Attempt to retrieve a project item with a malformed request body" classname="UnknownClass" time="0.018"/>
-  <testcase name="Retrieve details of an existing to-do item" classname="UnknownClass" time="0.016"/>
-  <testcase name="Attempt to retrieve a non-existent to-do item" classname="UnknownClass" time="0.016"/>
-  <testcase name="Attempt to retrieve a to-do item with a malformed request body" classname="UnknownClass" time="0.014"/>
-  <testcase name="Normal Flow - Update title field for a specific category" classname="UnknownClass" time="0.017"/>
-  <testcase name="Alternate Flow - Update title and description fields for a specific category" classname="UnknownClass" time="0.013"/>
-  <testcase name="Error Flow - Update title field for non-existent category" classname="UnknownClass" time="0.007"/>
-  <testcase name="Mark a project item as completed" classname="UnknownClass" time="0.03"/>
-  <testcase name="Mark a completed project item as not completed" classname="UnknownClass" time="0.027"/>
-  <testcase name="Attempt to update the completion status without specifying the status" classname="UnknownClass" time="0.021"/>
-  <testcase name="Mark a to-do item as completed" classname="UnknownClass" time="0.023"/>
-  <testcase name="Mark a completed to-do item as not completed" classname="UnknownClass" time="0.022"/>
-  <testcase name="Attempt to update the completion status without specifying the status" classname="UnknownClass" time="0.025"/>
-  <testcase name="Normal Flow - View category details of category with title only" classname="UnknownClass" time="0.018"/>
+  <testcase name="Adding a new to-do item" classname="UnknownClass" time="1.194"/>
+  <testcase name="Attempting to add a new to-do item without a title" classname="UnknownClass" time="0.035"/>
+  <testcase name="Attempting to add a new to-do item with a malformed JSON request" classname="UnknownClass" time="0.021"/>
+  <testcase name="Normal Flow - Creating a new category" classname="UnknownClass" time="0.033"/>
+  <testcase name="Alternate Flow - Creating a new category" classname="UnknownClass" time="0.035"/>
+  <testcase name="Error Flow - Creating a new category" classname="UnknownClass" time="0.021"/>
+  <testcase name="Creating a new project" classname="UnknownClass" time="0.064"/>
+  <testcase name="Attempting to add a new project item with a new title and description" classname="UnknownClass" time="0.04"/>
+  <testcase name="Attempting to add a new project item with a malformed JSON request" classname="UnknownClass" time="0.014"/>
+  <testcase name="Normal Flow - Delete a specific category using id" classname="UnknownClass" time="0.018"/>
+  <testcase name="Alternate Flow - Delete category without id" classname="UnknownClass" time="0.017"/>
+  <testcase name="Error Flow - Delete a category with non-existent id" classname="UnknownClass" time="0.012"/>
+  <testcase name="Delete a specific project item" classname="UnknownClass" time="0.033"/>
+  <testcase name="Alternate Flow - Delete project without id" classname="UnknownClass" time="0.029"/>
+  <testcase name="Error Flow - Delete a project with non-existent id" classname="UnknownClass" time="0.021"/>
+  <testcase name="Delete a specific to-do item" classname="UnknownClass" time="0.058"/>
+  <testcase name="Attempt to delete a non-existing to-do item" classname="UnknownClass" time="0.027"/>
+  <testcase name="Attempt to delete with a malformed ID" classname="UnknownClass" time="0.024"/>
+  <testcase name="Retrieve list of all project items" classname="UnknownClass" time="0.034"/>
+  <testcase name="Retrieve a specific project item by ID" classname="UnknownClass" time="0.019"/>
+  <testcase name="Retrieve list of all to-do items" classname="UnknownClass" time="0.036"/>
+  <testcase name="Retrieve a specific to-do item by ID" classname="UnknownClass" time="0.019"/>
+  <testcase name="Normal Flow - Get all categories" classname="UnknownClass" time="0.012"/>
+  <testcase name="Alternate flow - Get a specific category" classname="UnknownClass" time="0.016"/>
+  <testcase name="Error Flow - Get a category with a non-existent id" classname="UnknownClass" time="0.01"/>
+  <testcase name="Retrieve details of an existing project item" classname="UnknownClass" time="0.023"/>
+  <testcase name="Attempt to retrieve a non-existent project item" classname="UnknownClass" time="0.015"/>
+  <testcase name="Attempt to retrieve a project item with a malformed request body" classname="UnknownClass" time="0.016"/>
+  <testcase name="Retrieve details of an existing to-do item" classname="UnknownClass" time="0.021"/>
+  <testcase name="Attempt to retrieve a non-existent to-do item" classname="UnknownClass" time="0.017"/>
+  <testcase name="Attempt to retrieve a to-do item with a malformed request body" classname="UnknownClass" time="0.019"/>
+  <testcase name="Normal Flow - Update title field for a specific category" classname="UnknownClass" time="0.019"/>
+  <testcase name="Alternate Flow - Update title and description fields for a specific category" classname="UnknownClass" time="0.025"/>
+  <testcase name="Error Flow - Update title field for non-existent category" classname="UnknownClass" time="0.009"/>
+  <testcase name="Mark a project item as completed" classname="UnknownClass" time="0.028"/>
+  <testcase name="Mark a completed project item as not completed" classname="UnknownClass" time="0.03"/>
+  <testcase name="Attempt to update the completion status without specifying the status" classname="UnknownClass" time="0.022"/>
+  <testcase name="Mark a to-do item as completed" classname="UnknownClass" time="0.028"/>
+  <testcase name="Mark a completed to-do item as not completed" classname="UnknownClass" time="0.027"/>
+  <testcase name="Attempt to update the completion status without specifying the status" classname="UnknownClass" time="0.018"/>
+  <testcase name="Normal Flow - View category details of category with title only" classname="UnknownClass" time="0.013"/>
   <testcase name="Alternate Flow - View category details of category with title and description" classname="UnknownClass" time="0.019">
     <failure message="java.lang.AssertionError: &#10;Expected: a string containing &quot;\&quot;title\&quot;:\&quot;Category 4 Title\&quot;&quot;&#10;     but: was &quot;{&quot;categories&quot;:[{&quot;id&quot;:&quot;4&quot;,&quot;title&quot;:&quot;CategoryTest&quot;,&quot;description&quot;:&quot;&quot;}]}&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
 Expected: a string containing &quot;\&quot;title\&quot;:\&quot;Category 4 Title\&quot;&quot;
@@ -52,74 +52,9 @@ Expected: a string containing &quot;\&quot;title\&quot;:\&quot;Category 4 Title\
 	at ✽.the title of category with ID 4 retrieved is &quot;Category 4 Title&quot;(classpath:viewCategories.feature:12)
 </failure>
   </testcase>
-  <testcase name="Error Flow - View category details of category with non-existent id" classname="UnknownClass" time="0.017"/>
-  <system-out><![CDATA[project ID: 22, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 124, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 143, Title: Project Title, Completed: false, Active: false , Description: 
-project ID: 42, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 85, Title: Updated Title, Completed: false, Active: true , Description: Updated Description
-project ID: 120, Title:  new title , Completed: false, Active: false , Description: new description
-project ID: 112, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 73, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 67, Title: , Completed: true, Active: false , Description: 
-project ID: 34, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 32, Title:  new title , Completed: false, Active: false , Description: new description
-project ID: 45, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 118, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 128, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 93, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 51, Title: Project Title, Completed: false, Active: false , Description: Project Description
+  <testcase name="Error Flow - View category details of category with non-existent id" classname="UnknownClass" time="0.016"/>
+  <system-out><![CDATA[project ID: 1, Title: Office Work, Completed: false, Active: false , Description: 
 project ID: 5, Title: Project Title, Completed: false, Active: false , Description: 
-project ID: 136, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 130, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 132, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 75, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 38, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 18, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 83, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 47, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 100, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 8, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 57, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 63, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 89, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 12, Title: Updated Title, Completed: false, Active: true , Description: Updated Description
-project ID: 49, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 40, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 134, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 114, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 10, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 20, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 16, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 30, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 108, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 138, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 104, Title: New title, Completed: false, Active: false , Description: Project Description
-project ID: 110, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 98, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 106, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 26, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 65, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 96, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 76, Title: s aute irure dolor i, Completed: false, Active: false , Description: sse cillum dolore eu
-project ID: 102, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 28, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 91, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 36, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 71, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 87, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 122, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 23, Title: s aute irure dolor i, Completed: false, Active: false , Description: sse cillum dolore eu
-project ID: 69, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 14, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 55, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 1, Title: scan paperwork, Completed: false, Active: false , Description: 
-project ID: 59, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 61, Title: New title, Completed: false, Active: false , Description: Project Description
-project ID: 53, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 81, Title: Project Title, Completed: false, Active: false , Description: Project Description
-project ID: 116, Title: , Completed: true, Active: false , Description: 
-project ID: 79, Title: Project Title, Completed: false, Active: false , Description: Project Description
 Todo ID: 1, Title: scan paperwork, Done Status: false, Description: 
 Todo ID: 2, Title: file paperwork, Done Status: false, Description: 
 ]]></system-out>

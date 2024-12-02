@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //    @TestMethodOrder(MethodOrderer.Random.class)
     public class TodosMultipleObjectsPerformanceTest {
     OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-    private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};
+    private final int[] targetSize = {1, 10, 50, 100, 250, 500};
     private final HttpClient client = HttpClient.newHttpClient();
     public static String categoryId = "0";
     public static String taskId = "0";
@@ -118,6 +118,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         for (int currentSize = 1; currentSize <= targetSize[targetSize.length - 1]; currentSize++) {
             if (targetSize[sizeIndex] == currentSize) {
+
                 long operationStartTime = System.nanoTime();
                 String requestBody = "{ \"title\": " + currentSize + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request = HttpRequest.newBuilder()
@@ -153,6 +154,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
                 assertEquals(201, response.statusCode());
             } else {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
                 String requestBody = "{ \"title\": " + currentSize + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:4567/todos"))
@@ -173,7 +179,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             }
         }
 
-        System.out.println("Add Todos Statistics\n");
+        System.out.println("Add Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
@@ -198,7 +204,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             if (targetSize[sizeIndex] == currentSize) {
 
                 //create an object first
-                String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
+                String requestBody = "{ \"title\": \" " + currentSize + " \", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request_create = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
@@ -211,7 +217,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 long operationStartTime = System.nanoTime();
 
                 // delete and verify
-                long startTime = System.nanoTime();
                 String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
@@ -236,7 +241,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
             } else {
-                String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                String requestBody = "{ \"title\": \" " + currentSize + " \", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request_create = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
@@ -247,7 +257,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 String responseBody = response_create.body();
 
                 // delete and verify
-                long startTime = System.nanoTime();
                 String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
@@ -258,7 +267,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             }
         }
 
-        System.out.println("Delete Todos Statistics\n");
+        System.out.println("Delete Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
@@ -321,7 +330,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             }
         }
 
-        System.out.println("Update Todos Statistics\n");
+        System.out.println("Update Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",

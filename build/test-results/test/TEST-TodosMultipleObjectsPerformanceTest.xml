@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TodosMultipleObjectsPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-30T21:30:51" hostname="Faizas-MacBook-Air.local" time="3.104">
+<testsuite name="TodosMultipleObjectsPerformanceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-01T17:42:40" hostname="Faizas-MacBook-Air.local" time="2.124">
   <properties/>
-  <testcase name="testCreateTodo()" classname="TodosMultipleObjectsPerformanceTest" time="3.104"/>
+  <testcase name="testDeleteTodo()" classname="TodosMultipleObjectsPerformanceTest" time="2.124"/>
   <system-out><![CDATA[-Add Todos Statistics
 
-SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          Sample Time (s)     
-1          0.008207             0.000000             81                   0.008208            
-10         0.001197             53.125000            75                   0.046494            
-50         0.000841             64.285714            101                  0.137713            
-100        0.000564             81.553398            126                  0.265919            
-250        0.000486             NaN                  99                   0.442887            
-500        0.000349             NaN                  99                   0.656182            
-1000       0.000179             66.389351            100                  1.027685            
+SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+1          0.001229             0.000000             83                   0.004555            
+10         0.001819             70.370370            109                  0.038147            
+50         0.000924             62.500000            108                  0.103448            
+100        0.000572             72.413793            88                   0.174516            
+250        0.004554             79.166667            73                   0.414566            
+500        0.001113             70.000000            107                  0.620592            
+1000       0.000535             NaN                  96                   0.979472            
 ]]></system-out>
-  <system-err><![CDATA[Nov 30, 2024 4:30:54 P.M. org.apache.http.impl.client.DefaultHttpClient tryExecute
-INFO: I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {}->http://localhost:4567: The target server failed to respond
-Nov 30, 2024 4:30:54 P.M. org.apache.http.impl.client.DefaultHttpClient tryExecute
-INFO: Retrying request to {}->http://localhost:4567
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

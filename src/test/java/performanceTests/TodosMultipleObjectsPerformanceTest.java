@@ -1,8 +1,8 @@
+package performanceTests;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.management.OperatingSystemMXBean;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -15,11 +15,10 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
 import javax.imageio.ImageIO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//    @TestMethodOrder(MethodOrderer.Random.class)
+
     public class TodosMultipleObjectsPerformanceTest {
     OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};

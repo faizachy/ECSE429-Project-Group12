@@ -3,34 +3,34 @@
 §Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_MemoryUsage_vs_Size.png
 Update Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.003916             0.000000             59                   0.003916            
-_10         0.001046             20.000000            58                   0.013069            
-_50         0.000555             56.521739            53                   0.039606            
-_100        0.000428             39.130435            48                   0.068867            
-_250        0.000478             49.333333            78                   0.168049            
-_500        0.000296             45.054945            51                   0.282559            
-_1000       0.000212             41.237113            62                   0.405162            
+_1          0.002060             0.000000             126                  0.002061            
+_10         0.000891             33.333333            122                  0.009329            
+_50         0.001798             60.869565            159                  0.042173            
+_100        0.000435             50.000000            128                  0.070576            
+_250        0.000394             56.451613            128                  0.147989            
+_500        0.000358             63.917526            128                  0.269152            
+_1000       0.000184             61.682243            128                  0.408505            
 §Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CumulativeTime_vs_Size.png
 ¢Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CPU_usage_vs_Size.png
 ¤Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_MemoryUsage_vs_Size.png
 Add Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.001233             47.592385            146                  0.001234            
-_10         0.000628             23.655914            117                  0.115132            
-_50         0.000626             21.428571            150                  0.660803            
-_100        0.000443             21.348315            118                  1.336314            
-_250        0.000741             20.854413            160                  3.568208            
-_500        0.000640             20.453752            107                  7.171462            
-_1000       0.006358             26.391474            69                   14.595419           
+_1          0.001065             48.224152            151                  0.001066            
+_10         0.000432             51.612903            156                  0.114903            
+_50         0.000570             25.171625            138                  0.666504            
+_100        0.000945             26.010545            169                  1.384744            
+_250        0.000665             27.910864            150                  3.636247            
+_500        0.000458             24.418605            106                  7.310806            
+_1000       0.000498             32.371630            115                  14.618248           
 ªGraph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CumulativeTime_vs_Size.png
 ¥Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CPU_usage_vs_Size.png
 §Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_MemoryUsage_vs_Size.png
 Delete Todos Statistics
 _SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
-_1          0.000247             49.038462            61                   0.000910            
-_10         0.000282             35.483871            68                   0.117083            
-_50         0.000914             24.600000            54                   0.745533            
-_100        0.000707             26.950355            88                   1.630434            
-_250        0.000278             36.344086            68                   3.973958            
-_500        0.000820             25.336839            56                   7.799531            
-_1000       0.000469             24.165726            54                   15.593362           
+_1          0.000405             71.590909            115                  0.001329            
+_10         0.000374             44.444444            135                  0.125219            
+_50         0.000378             43.013100            112                  0.701419            
+_100        0.000344             44.667697            139                  1.512278            
+_250        0.000718             37.174721            75                   3.874195            
+_500        0.000544             23.982329            56                   7.859038            
+_1000       0.000582             24.757521            94                   15.501582           

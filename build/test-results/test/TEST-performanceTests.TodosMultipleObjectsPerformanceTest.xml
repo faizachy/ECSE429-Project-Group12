@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="performanceTests.TodosMultipleObjectsPerformanceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-12-03T03:45:43" hostname="Faizas-MacBook-Air.local" time="32.47">
+  <properties/>
+  <testcase name="testUpdateTodoWithAllFields()" classname="performanceTests.TodosMultipleObjectsPerformanceTest" time="2.127"/>
+  <testcase name="testCreateTodo()" classname="performanceTests.TodosMultipleObjectsPerformanceTest" time="14.734"/>
+  <testcase name="testDeleteTodo()" classname="performanceTests.TodosMultipleObjectsPerformanceTest" time="15.607"/>
+  <system-out><![CDATA[Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_CumulativeTime_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_CPU_usage_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_MemoryUsage_vs_Size.png
+Update Todos Statistics
+SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+1          0.002060             0.000000             126                  0.002061            
+10         0.000891             33.333333            122                  0.009329            
+50         0.001798             60.869565            159                  0.042173            
+100        0.000435             50.000000            128                  0.070576            
+250        0.000394             56.451613            128                  0.147989            
+500        0.000358             63.917526            128                  0.269152            
+1000       0.000184             61.682243            128                  0.408505            
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CumulativeTime_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CPU_usage_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_MemoryUsage_vs_Size.png
+Add Todos Statistics
+SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+1          0.001065             48.224152            151                  0.001066            
+10         0.000432             51.612903            156                  0.114903            
+50         0.000570             25.171625            138                  0.666504            
+100        0.000945             26.010545            169                  1.384744            
+250        0.000665             27.910864            150                  3.636247            
+500        0.000458             24.418605            106                  7.310806            
+1000       0.000498             32.371630            115                  14.618248           
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CumulativeTime_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CPU_usage_vs_Size.png
+Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_MemoryUsage_vs_Size.png
+Delete Todos Statistics
+SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+1          0.000405             71.590909            115                  0.001329            
+10         0.000374             44.444444            135                  0.125219            
+50         0.000378             43.013100            112                  0.701419            
+100        0.000344             44.667697            139                  1.512278            
+250        0.000718             37.174721            75                   3.874195            
+500        0.000544             23.982329            56                   7.859038            
+1000       0.000582             24.757521            94                   15.501582           
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

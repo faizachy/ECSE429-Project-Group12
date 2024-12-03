@@ -179,7 +179,7 @@ public class TodosMultipleObjectsPerformanceTest {
     private void saveChartToFile(JFreeChart chart, String operation, String filename) {
         try {
             // Define the file path
-            String directoryPath = "./src/test/java/performanceTests/graphs/";
+            String directoryPath = "./src/test/java/performanceTests/graphs/todos/";
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs();  // Create the directory if it doesn't exist

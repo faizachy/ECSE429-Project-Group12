@@ -27,18 +27,7 @@ public class TodosMultipleObjectsPerformanceTest {
     public static String taskId = "0";
     public static String todoId = "0";
     private static ProcessBuilder pb;
-    @BeforeAll
-    static void setupProcess() {
-        String os = System.getProperty("os.name");
-        if (os.toLowerCase().contains("windows")) {
-            pb = new ProcessBuilder(
-                    "cmd.exe", "/c", "java -jar .\\src\\test\\resources\\runTodoManagerRestAPI-1.5.5.jar");
-        }
-        else {
-            pb = new ProcessBuilder(
-                    "sh", "-c", "java -jar ./src/test/resources/runTodoManagerRestAPI-1.5.5.jar");
-        }
-    }
+
     @BeforeEach
     public void setup_foreach() throws IOException, InterruptedException {
         String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";

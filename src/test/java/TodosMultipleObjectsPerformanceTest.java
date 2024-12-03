@@ -116,33 +116,68 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         return id;
     }
     // Helper method to generate the graph using JFreeChart and save it as PNG
-    private void generateGraph(String operation, int[] targetSize, double[] sampleTimeStore) {
-        // Create a series of data points
-        XYSeries series = new XYSeries("Sample Time");
+    private void generateGraph(String operation, int[] targetSize, double[] sampleTimeStore,
+                               double[] cpuUsageMetrics, long [] availableMemoryMetrics) {
+        // Create series of data points
+        XYSeries time_series = new XYSeries("Cumulative Time");
         for (int i = 0; i < targetSize.length; i++) {
-            series.add(targetSize[i], sampleTimeStore[i]);
+            time_series.add(targetSize[i], sampleTimeStore[i]);
         }
 
-        // Create a dataset from the series
-        XYSeriesCollection dataset = new XYSeriesCollection(series);
+        XYSeries cpuUsage_series = new XYSeries("CPU Usage");
+        for (int i = 0; i < targetSize.length; i++) {
+            cpuUsage_series.add(targetSize[i], cpuUsageMetrics[i]);
+        }
 
-        // Create the chart
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                operation + " Categories - Sample Time vs Category Size",  // Chart title
-                "Category Size",  // X-axis label
-                "Sample Time (s)",  // Y-axis label
-                dataset,  // Dataset
-                PlotOrientation.VERTICAL,  // Plot orientation
-                true,  // Legend
-                true,  // Tooltips
+        XYSeries memory_series = new XYSeries("Memory Usage");
+        for (int i = 0; i < targetSize.length; i++) {
+            memory_series.add(targetSize[i], availableMemoryMetrics[i]);
+        }
+
+        // Create datasets from the series
+        XYSeriesCollection time_dataset = new XYSeriesCollection(time_series);
+        XYSeriesCollection cpu_dataset = new XYSeriesCollection(cpuUsage_series);
+        XYSeriesCollection memory_dataset = new XYSeriesCollection(memory_series);
+
+        // Create charts
+        JFreeChart time_chart = ChartFactory.createXYLineChart(
+                operation + " Todos - Cumulative Time vs Todo Size",
+                "Todo Size",
+                "Cumulative Time (s)",
+                time_dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        JFreeChart cpu_chart = ChartFactory.createXYLineChart(
+                operation + " Todos - CPU Usage vs Todo Size",
+                "Todo Size",
+                "CPU Usage (%)",
+                cpu_dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        JFreeChart memory_chart = ChartFactory.createXYLineChart(
+                operation + " Todos -Memory Usage vs Todo Size",
+                "Todo Size",
+                "Memory Usage",
+                memory_dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
                 false
         );
 
-        // Save the chart to a file
-        saveChartToFile(chart, operation);
+        // Save the charts to files
+        saveChartToFile(time_chart, operation, "_Todos_CumulativeTime_vs_Size.png");
+        saveChartToFile(cpu_chart, operation, "_Todos_CPU_usage_vs_Size.png");
+        saveChartToFile(memory_chart, operation, "_Todos_MemoryUsage_vs_Size.png");
     }
 
-    private void saveChartToFile(JFreeChart chart, String operation) {
+    private void saveChartToFile(JFreeChart chart, String operation, String filename) {
         try {
             // Define the file path
             String directoryPath = "./src/test/java/performanceTests/graphs/";
@@ -152,7 +187,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             }
 
             // Define the file name
-            String fileName = operation + "_Categories_SampleTime_vs_Size.png";
+            String fileName = operation + filename;
             File file = new File(directory, fileName);
 
             // Save the chart as a PNG image
@@ -209,7 +244,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
                 assertEquals(201, response.statusCode());
 
-                generateGraph("Add", targetSize, cumulativeTimeStore);
+
             } else {
                 try {
                     Thread.sleep(10);
@@ -235,7 +270,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 assertEquals(201, response.statusCode());
             }
         }
-
+        generateGraph("Add", targetSize, cumulativeTimeStore,cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Add Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
@@ -297,7 +332,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
-                generateGraph("Delete", targetSize, cumulativeTimeStore);
+
             } else {
                 try {
                     Thread.sleep(10);
@@ -324,7 +359,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 assertEquals(200, response.statusCode());
             }
         }
-
+        generateGraph("Delete", targetSize, cumulativeTimeStore, cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Delete Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
@@ -374,7 +409,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
-                generateGraph("Update", targetSize, cumulativeTimeStore);
+
 
             } else {
                 String requestBody = "{ \"title\": \"Updated Title\", \"doneStatus\": false, \"description\": \"Updated Description\" }";
@@ -388,7 +423,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
                 assertEquals(200, response.statusCode());
             }
         }
-
+        generateGraph("Update", targetSize, cumulativeTimeStore, cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Update Todos Statistics");
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {

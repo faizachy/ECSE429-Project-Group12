@@ -19,18 +19,14 @@ import javax.imageio.ImageIO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-public class projectPerformanceTestsForMultipleObjects {
-
-========
-    public class TodosMultipleObjectsPerformanceTest {
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
+public class TodosMultipleObjectsPerformanceTest {
     OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     private final int[] targetSize = {1, 10, 50, 100, 250, 500, 1000};
     private final HttpClient client = HttpClient.newHttpClient();
-    public static String projectId = "0";
+    public static String categoryId = "0";
+    public static String taskId = "0";
+    public static String todoId = "0";
     private static ProcessBuilder pb;
-    
     @BeforeAll
     static void setupProcess() {
         String os = System.getProperty("os.name");
@@ -43,12 +39,11 @@ public class projectPerformanceTestsForMultipleObjects {
                     "sh", "-c", "java -jar ./src/test/resources/runTodoManagerRestAPI-1.5.5.jar");
         }
     }
-    
     @BeforeEach
     public void setup_foreach() throws IOException, InterruptedException {
-        String requestBody = "{ \"title\": \"Project Title\", \"active\": false, \"completed\": false, \"description\": \"Project Description\" }";
+        String requestBody = "{ \"title\": \"s aute irure dolor i\", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:4567/projects"))
+                .uri(URI.create("http://localhost:4567/todos"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -56,13 +51,15 @@ public class projectPerformanceTestsForMultipleObjects {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(201, response.statusCode());
         String responseBody = response.body();
-        projectId = new ObjectMapper().readTree(responseBody).get("id").asText();
+        todoId = new ObjectMapper().readTree(responseBody).get("id").asText();
+        taskId = createTaskOfTodo();
+        categoryId = createCategory();
     }
 
     @AfterEach
     public void teardown() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:4567/projects/" + projectId))
+                .uri(URI.create("http://localhost:4567/todos/" + todoId))
                 .DELETE()
                 .build();
 
@@ -70,14 +67,14 @@ public class projectPerformanceTestsForMultipleObjects {
         assertEquals(200, response.statusCode());
     }
 
-    public static String createTaskOfproject() throws IOException, InterruptedException {
+    public static String createTaskOfTodo() throws IOException, InterruptedException {
         // Initialize the HttpClient
         HttpClient client = HttpClient.newHttpClient();
 
         String requestBody = "{ \"Id\": \"1\" }";
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:4567/projects/" + projectId + "/tasksof"))
+                .uri(URI.create("http://localhost:4567/todos/" + todoId + "/tasksof"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -88,13 +85,6 @@ public class projectPerformanceTestsForMultipleObjects {
 
         return "1";
     }
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-    
-    // Helper method to generate the graph for time using JFreeChart and save it as PNG
-    private void generateGraphForTime(String operation, int[] targetSize, double[] sampleTimeStore) {
-        // Create a series of data points
-        XYSeries series = new XYSeries("Sample Time");
-========
 
     public static String createCategory() throws IOException, InterruptedException {
         // Initialize the HttpClient
@@ -129,7 +119,6 @@ public class projectPerformanceTestsForMultipleObjects {
                                double[] cpuUsageMetrics, long [] availableMemoryMetrics) {
         // Create series of data points
         XYSeries time_series = new XYSeries("Cumulative Time");
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
         for (int i = 0; i < targetSize.length; i++) {
             time_series.add(targetSize[i], sampleTimeStore[i]);
         }
@@ -139,78 +128,6 @@ public class projectPerformanceTestsForMultipleObjects {
             cpuUsage_series.add(targetSize[i], cpuUsageMetrics[i]);
         }
 
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-        // Create the chart
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                operation + " Projects - Number of Projects vs Time Taken",  // Chart title
-                "Number of Projects",  // X-axis label
-                "Time Taken (s)",  // Y-axis label
-                dataset,  // Dataset
-                PlotOrientation.VERTICAL,  // Plot orientation
-                true,  // Legend
-                true,  // Tooltips
-                false
-        );
-
-        // Save the chart to a file
-        saveChartToFile(chart, operation, "TIME");
-    }
-
-    // Helper method to generate the graph for time using JFreeChart and save it as PNG
-    private void generateGraphForMemory(String operation, int[] targetSize, long[] availableMemoryMetrics) {
-        // Create a series of data points
-        XYSeries series = new XYSeries("Memory");
-        for (int i = 0; i < targetSize.length; i++) {
-            series.add(targetSize[i], availableMemoryMetrics[i]);
-        }
-
-        // Create a dataset from the series
-        XYSeriesCollection dataset = new XYSeriesCollection(series);
-
-        // Create the chart
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                operation + " Projects - Number of Projects vs Available Memory",  // Chart title
-                "Number of Projects",  // X-axis label
-                "Available Memory (MB)",  // Y-axis label
-                dataset,  // Dataset
-                PlotOrientation.VERTICAL,  // Plot orientation
-                true,  // Legend
-                true,  // Tooltips
-                false
-        );
-
-        // Save the chart to a file
-        saveChartToFile(chart, operation, "MEMORY");
-    }
-
-    private void generateGraphForCPU(String operation, int[] targetSize, double[] cpuUsageMetrics) {
-        // Create a series of data points
-        XYSeries series = new XYSeries("CPU Usage");
-        for (int i = 0; i < targetSize.length; i++) {
-            series.add(targetSize[i], cpuUsageMetrics[i]);
-        }
-
-        // Create a dataset from the series
-        XYSeriesCollection dataset = new XYSeriesCollection(series);
-
-        // Create the chart
-        JFreeChart chart = ChartFactory.createXYLineChart(
-                operation + " Projects - Number of Projects vs CPU Usage",  // Chart title
-                "Number of Projects",  // X-axis label
-                "CPU Usage (%)",  // Y-axis label
-                dataset,  // Dataset
-                PlotOrientation.VERTICAL,  // Plot orientation
-                true,  // Legend
-                true,  // Tooltips
-                false
-        );
-
-        // Save the chart to a file
-        saveChartToFile(chart, operation, "CPU");
-    }
-
-    private void saveChartToFile(JFreeChart chart, String operation, String type) {
-========
         XYSeries memory_series = new XYSeries("Memory Usage");
         for (int i = 0; i < targetSize.length; i++) {
             memory_series.add(targetSize[i], availableMemoryMetrics[i]);
@@ -260,7 +177,6 @@ public class projectPerformanceTestsForMultipleObjects {
     }
 
     private void saveChartToFile(JFreeChart chart, String operation, String filename) {
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
         try {
             // Define the file path
             String directoryPath = "./src/test/java/performanceTests/graphs/";
@@ -268,23 +184,9 @@ public class projectPerformanceTestsForMultipleObjects {
             if (!directory.exists()) {
                 directory.mkdirs();  // Create the directory if it doesn't exist
             }
-            String fileName = "";
 
             // Define the file name
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-            if (type.equalsIgnoreCase("MEMORY")){
-                fileName = operation + "_Projects_Memory_vs_Size.png";
-            }
-            else if (type.equalsIgnoreCase("TIME")){
-                fileName = operation + "_Projects_Time_vs_Size.png";
-            }
-            else{
-                fileName = operation + "_Projects_CPU_vs_Size.png";
-            }
-            
-========
             String fileName = operation + filename;
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
             File file = new File(directory, fileName);
 
             // Save the chart as a PNG image
@@ -295,7 +197,7 @@ public class projectPerformanceTestsForMultipleObjects {
         }
     }
     @Test
-    public void testCreateProjectPerformance() throws IOException, InterruptedException {
+    public void testCreateTodo() throws IOException, InterruptedException {
         long testStartTime = System.nanoTime();
         double[] cumulativeTimeStore = new double[targetSize.length];
         double[] operationTimeStore = new double[targetSize.length];
@@ -307,9 +209,9 @@ public class projectPerformanceTestsForMultipleObjects {
             if (targetSize[sizeIndex] == currentSize) {
 
                 long operationStartTime = System.nanoTime();
-                String requestBody = "{ \"title\": \"Project Title\", \"active\": false, \"completed\": false, \"description\": \"Project Description\" }";
+                String requestBody = "{ \"title\": " + currentSize + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects"))
+                        .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -333,30 +235,24 @@ public class projectPerformanceTestsForMultipleObjects {
                 sizeIndex++;
 
                 // Delete the created object
-                String projectIdToDelete = new ObjectMapper().readTree(responseBody).get("id").asText(); 
+                String todoIdToDelete = new ObjectMapper().readTree(responseBody).get("id").asText(); // Renamed from todoId_delete
                 HttpRequest deleteRequest = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectIdToDelete))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoIdToDelete))
                         .DELETE()
                         .build();
                 HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
                 assertEquals(201, response.statusCode());
 
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-                generateGraphForTime("Add", targetSize, cumulativeTimeStore);
-                generateGraphForMemory("Add", targetSize, availableMemoryMetrics);
-                generateGraphForCPU("Add", targetSize, cpuUsageMetrics);
-========
 
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
             } else {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-                String requestBody = "{ \"title\": \"Project Title\", \"active\": false, \"completed\": false, \"description\": \"Project Description\" }";
+                String requestBody = "{ \"title\": " + currentSize + ", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects"))
+                        .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -364,22 +260,17 @@ public class projectPerformanceTestsForMultipleObjects {
                 String responseBody = response.body();
 
                 // Delete the created object
-                String projectIdToDelete = new ObjectMapper().readTree(responseBody).get("id").asText();
+                String todoIdToDelete = new ObjectMapper().readTree(responseBody).get("id").asText();
                 HttpRequest deleteRequest = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectIdToDelete))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoIdToDelete))
                         .DELETE()
                         .build();
                 HttpResponse<String> deleteResponse = client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
                 assertEquals(201, response.statusCode());
             }
         }
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-
-        System.out.println("Add Projects Statistics");
-========
         generateGraph("Add", targetSize, cumulativeTimeStore,cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Add Todos Statistics");
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
@@ -392,7 +283,7 @@ public class projectPerformanceTestsForMultipleObjects {
     }
 
     @Test
-    public void testDeleteprojectPerformance() throws IOException, InterruptedException {
+    public void testDeleteTodo() throws IOException, InterruptedException {
         long testStartTime = System.nanoTime();
         double[] cumulativeTimeStore = new double[targetSize.length];
         double[] operationTimeStore = new double[targetSize.length];
@@ -404,9 +295,9 @@ public class projectPerformanceTestsForMultipleObjects {
             if (targetSize[sizeIndex] == currentSize) {
 
                 //create an object first
-                String requestBody = "{ \"title\": \"Project Title\", \"active\": false, \"completed\": false, \"description\": \"Project Description\" }";
+                String requestBody = "{ \"title\": \" " + currentSize + " \", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request_create = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects"))
+                        .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -417,9 +308,9 @@ public class projectPerformanceTestsForMultipleObjects {
                 long operationStartTime = System.nanoTime();
 
                 // delete and verify
-                String projectId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
+                String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectId_delete))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
                         .DELETE()
                         .build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -440,22 +331,16 @@ public class projectPerformanceTestsForMultipleObjects {
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-                generateGraphForTime("Delete", targetSize, cumulativeTimeStore);
-                generateGraphForMemory("Delete", targetSize, availableMemoryMetrics);
-                generateGraphForCPU("Delete", targetSize, cpuUsageMetrics);
-========
 
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
             } else {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-                String requestBody = "{ \"title\": \"Project Title\", \"active\": false, \"completed\": false, \"description\": \"Project Description\" }";
+                String requestBody = "{ \"title\": \" " + currentSize + " \", \"doneStatus\": false, \"description\": \"sse cillum dolore eu\" }";
                 HttpRequest request_create = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects"))
+                        .uri(URI.create("http://localhost:4567/todos"))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -464,22 +349,17 @@ public class projectPerformanceTestsForMultipleObjects {
                 String responseBody = response_create.body();
 
                 // delete and verify
-                String projectId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
+                String todoId_delete = new ObjectMapper().readTree(responseBody).get("id").asText();
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectId_delete))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoId_delete))
                         .DELETE()
                         .build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 assertEquals(200, response.statusCode());
             }
         }
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-
-        System.out.println("Delete Projects Statistics");
-========
         generateGraph("Delete", targetSize, cumulativeTimeStore, cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Delete Todos Statistics");
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
@@ -493,7 +373,7 @@ public class projectPerformanceTestsForMultipleObjects {
 
 
     @Test
-    public void testUpdateProjectPerformance() throws IOException, InterruptedException {
+    public void testUpdateTodoWithAllFields() throws IOException, InterruptedException {
         long testStartTime = System.nanoTime();
         double[] cumulativeTimeStore = new double[targetSize.length];
         double[] operationTimeStore = new double[targetSize.length];
@@ -504,9 +384,9 @@ public class projectPerformanceTestsForMultipleObjects {
         for (int currentSize = 1; currentSize <= targetSize[targetSize.length - 1]; currentSize++) {
             if (targetSize[sizeIndex] == currentSize) {
                 long operationStartTime = System.nanoTime();
-                String requestBody = "{ \"title\": \"Updated Title\", \"active\": true, \"completed\": false, \"description\": \"Updated Description\" }";
+                String requestBody = "{ \"title\": \"Updated Title\", \"doneStatus\": false, \"description\": \"Updated Description\" }";
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectId))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoId))
                         .header("Content-Type", "application/json")
                         .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -528,18 +408,12 @@ public class projectPerformanceTestsForMultipleObjects {
 
                 sizeIndex++;
                 assertEquals(200, response.statusCode());
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-                generateGraphForTime("Update", targetSize, cumulativeTimeStore);
-                generateGraphForMemory("Update", targetSize, availableMemoryMetrics);
-                generateGraphForCPU("Update", targetSize, cpuUsageMetrics);
-========
 
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
 
             } else {
-                String requestBody = "{ \"title\": \"Updated Title\", \"active\": true, \"completed\": false, \"description\": \"Updated Description\" }";
+                String requestBody = "{ \"title\": \"Updated Title\", \"doneStatus\": false, \"description\": \"Updated Description\" }";
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:4567/projects/" + projectId))
+                        .uri(URI.create("http://localhost:4567/todos/" + todoId))
                         .header("Content-Type", "application/json")
                         .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -548,13 +422,8 @@ public class projectPerformanceTestsForMultipleObjects {
                 assertEquals(200, response.statusCode());
             }
         }
-<<<<<<<< HEAD:src/test/java/performanceTests/projectPerformanceTestsForMultipleObjects.java
-
-        System.out.println("Update Projects Statistics");
-========
         generateGraph("Update", targetSize, cumulativeTimeStore, cpuUsageMetrics, availableMemoryMetrics);
         System.out.println("Update Todos Statistics");
->>>>>>>> todos:src/test/java/performanceTests/TodosMultipleObjectsPerformanceTest.java
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "SIZE", "TIME (s)", "CPU USAGE (%)", "MEMORY (MB)", "CUMULATIVE TIME (s)");
         for (int i = 0; i < targetSize.length; i++) {
             System.out.printf("%-10d %-20f %-20f %-20d %-20f%n",
@@ -566,5 +435,3 @@ public class projectPerformanceTestsForMultipleObjects {
         }
     }
 }
-
-

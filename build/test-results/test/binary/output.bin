@@ -1,189 +1,36 @@
-Sproject ID: 1, Title: Office Work, Completed: false, Active: false , Description: 
-Uproject ID: 5, Title: Project Title, Completed: false, Active: false , Description: 
-ETodo ID: 1, Title: scan paperwork, Done Status: false, Description: 
-ETodo ID: 2, Title: file paperwork, Done Status: false, Description: 
-.-P{"errorMessages":["No such category entity instance with GUID or ID -1 found"]}
-./2{"id":"18","title":" Chocolate","description":""}
-.0{"projects":[]}
-.1_Response body: {"errorMessages":["Mismatched title and category at 90 [character 91 line 1]"]}
-.3„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
-.4{"todos":[]}
-.6{"categories":[]}
-.7B{"errorMessages":["Failed Validation: title : can not be empty"]}
-.8T{"id":"37","title":"s anim id est laboruma i","description":"in culpa qui officia"}
-.9B{"errorMessages":["Failed Validation: title : can not be empty"]}
-.;B{"errorMessages":["Failed Validation: title : can not be empty"]}
-.<Í{"categories":[{"id":"28","title":"Category Title","description":"Category Description"},{"id":"12","title":"Category New Title","description":""},{"id":"4","title":"CategoryTest","description":""},{"id":"30","title":"Category Title","description":"Category Description"},{"id":"15","title":"Category 4 Title","description":"Description Test"},{"id":"42","title":"Category Title","description":"Category Description"},{"id":"11","title":"Work","description":""},{"id":"26","title":"Category Title","description":"Category Description"},{"id":"24","title":"Category Title","description":"Category Description"},{"id":"20","title":"Category Title","description":"Category Description"},{"id":"46","title":"Category Title","description":"Category Description"},{"id":"13","title":"Category New Title","description":"Category New Description"},{"id":"18","title":" Chocolate","description":""},{"id":"16","title":"Category Title","description":"Category Description"},{"id":"2","title":"Home","description":""},{"id":"6","title":"NewCategoryTit","description":"descriptiontest"},{"id":"10","title":"Category Title","description":""},{"id":"37","title":"s anim id est laboruma i","description":"in culpa qui officia"},{"id":"1","title":"Office","description":""},{"id":"39","title":"Category Title","description":"Category Description"},{"id":"14","title":"Office","description":""},{"id":"22","title":"Category Title","description":"Category Description"},{"id":"32","title":"Category Title","description":"Category Description"},{"id":"36","title":"Category Title","description":"Category Description"},{"id":"44","title":"Category Title","description":"Category Description"},{"id":"34","title":"Category Title","description":"Category Description"},{"id":"3","title":"CategoryTest","description":""},{"id":"5","title":"NewCategoryTit","description":"descriptiontest"}]}
-.=F{"errorMessages":["Could not find any instances with categories/-1"]}
-.>D{"errorMessages":["Could not find an instance with categories/-1"]}
-.?{"categories":[]}
-.AY{"errorMessages":["Invalid Creation: Failed Validation: Not allowed to create with id"]}
-.B:{"errorMessages":["Invalid GUID for -1 entity category"]}
-.C[{"categories":[{"id":"60","title":"Category Title","description":"Category Description"}]}
-.D<{"categories":[{"id":"2","title":"Home","description":""}]}
-.EC{"id":"64","title":" Couch ","description":"Category Description"}
-.F
-HG_{"errorMessages":["Failed Validation: completed should be BOOLEAN, active should be BOOLEAN"]}
-HI{"projects":[]}
-HKÈ{"projects":[{"id":"11","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"9","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"}],"categories":[{"id":"71"},{"id":"69"},{"id":"68"},{"id":"70"}]},{"id":"5","title":"Project Title","completed":"false","active":"false","description":""},{"id":"6","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"13","title":"Project Title","completed":"false","active":"false","description":"Project Description"}]}
-HN9{"errorMessages":["Invalid GUID for -1 entity project"]}
-HOg{"id":"21","title":" new title ","completed":"false","active":"false","description":"new description"}
-HPŸ
-{"projects":[{"id":"11","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"15","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"9","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"21","title":" new title ","completed":"false","active":"false","description":"new description"},{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"}],"categories":[{"id":"71"},{"id":"72"},{"id":"74"},{"id":"76"},{"id":"69"},{"id":"73"},{"id":"75"},{"id":"68"},{"id":"70"}]},{"id":"5","title":"Project Title","completed":"false","active":"false","description":""},{"id":"6","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"23","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"13","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"17","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"19","title":"Project Title","completed":"false","active":"false","description":"Project Description"}]}
-HQõ{"categories":[{"id":"71","title":"Category Title","description":"Category Description"},{"id":"72","title":"Category Title","description":"Category Description"},{"id":"74","title":"Category Title","description":"Category Description"},{"id":"77","title":"Category Title","description":"Category Description"},{"id":"76","title":"Category Title","description":"Category Description"},{"id":"69","title":"Category Title","description":"Category Description"},{"id":"73","title":"Category Title","description":"Category Description"},{"id":"75","title":"Category Title","description":"Category Description"},{"id":"68","title":"Category Title","description":"Category Description"},{"id":"70","title":"Category Title","description":"Category Description"}]}
-HSE{"errorMessages":["Could not find any instances with projects/999"]}
-HTƒ{"projects":[{"id":"9","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"5","title":"Project Title","completed":"false","active":"false","description":""},{"id":"25","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"13","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"17","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"29","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"11","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"27","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"15","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"21","title":" new title ","completed":"false","active":"false","description":"new description"},{"id":"31","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"}],"categories":[{"id":"72"},{"id":"80"},{"id":"74"},{"id":"76"},{"id":"73"},{"id":"71"},{"id":"78"},{"id":"77"},{"id":"69"},{"id":"79"},{"id":"75"},{"id":"68"},{"id":"70"}]},{"id":"6","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"23","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"19","title":"Project Title","completed":"false","active":"false","description":"Project Description"}]}
-HUm{"todos":[{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
-HVB{"errorMessages":["Could not find an instance with projects/-1"]}
-HWî{"projects":[{"id":"9","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"37","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"5","title":"Project Title","completed":"false","active":"false","description":""},{"id":"25","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"35","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"13","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"17","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"29","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"11","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"27","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"15","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"21","title":" new title ","completed":"false","active":"false","description":"new description"},{"id":"31","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"}],"categories":[{"id":"72"},{"id":"80"},{"id":"74"},{"id":"83"},{"id":"76"},{"id":"73"},{"id":"71"},{"id":"78"},{"id":"77"},{"id":"69"},{"id":"79"},{"id":"82"},{"id":"75"},{"id":"68"},{"id":"70"},{"id":"81"}]},{"id":"6","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"23","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"33","title":"Project Title","completed":"false","active":"false","description":"Project Description"},{"id":"19","title":"Project Title","completed":"false","active":"false","description":"Project Description"}]}
-HXu{"id":"40","title":"s aute irure dolor i","completed":"false","active":"false","description":"sse cillum dolore eu"}
-HYA{"errorMessages":["Could not find thing matching value for id"]}
-HZl{"id":"45","title":"Updated Title","completed":"false","active":"true","description":"Updated Description"}
-H[L{"id":"47","title":"","completed":"true","active":"false","description":""}
-H\
-H]
-H_i{"id":"55","title":"New title","completed":"false","active":"false","description":"Project Description"}
-H`O{"errorMessages":["No such project entity instance with GUID or ID -1 found"]}
-Ha
-Hb„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
-Hc
-Hd
-HeR{"errorMessages":["Could not find any instances with projects/1/categories/999"]}
-Hfõ{"projects":[{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"}],"categories":[{"id":"87"},{"id":"72"},{"id":"89"},{"id":"96"},{"id":"73"},{"id":"92"},{"id":"93"},{"id":"85"},{"id":"71"},{"id":"91"},{"id":"69"},{"id":"79"},{"id":"97"},{"id":"88"},{"id":"75"},{"id":"68"},{"id":"84"},{"id":"98"},{"id":"80"},{"id":"74"},{"id":"83"},{"id":"76"},{"id":"86"},{"id":"90"},{"id":"94"},{"id":"78"},{"id":"77"},{"id":"82"},{"id":"70"},{"id":"81"}]}]}
-Hg^Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
-ih
-ih\{"id":"6","title":"Updated Title","doneStatus":"false","description":"Updated Description"}
-ih
-ij
-ijResponse status code: 400
-ij@Response body: {"errorMessages":["title : field is mandatory"]}
-ij
-ik
-ik„Response body: {"errorMessages":["com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 32 path $."]}
-ik
-il
-il
-im
-imÏ{"todos":[{"id":"10","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"104"}]},{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
-im
-in
-in
-io
-ioŠ{"id":"12","title":" new title ","doneStatus":"false","description":"new description","tasksof":[{"id":"1"}],"categories":[{"id":"106"}]}
-io
-ip
-ip
-ip
-iq
-iq?{"errorMessages":["Could not find an instance with todos/-1"]}
-iq
-ir
-irL{"errorMessages":["No such todo entity instance with GUID or ID -1 found"]}
-ir
-is
-is
-it
-it¤{"todos":[{"id":"17","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"111"}]}]}
-it
-iu
-iuO{"errorMessages":["Could not find any instances with todos/18/categories/-1"]}
-iu
-iv
-ivResponse status code: 400
-iv@Response body: {"errorMessages":["title : field is mandatory"]}
-iv
-iw
-iw
-iw
-ix
-ix{"projects":[{"id":"1","title":"scan paperwork","completed":"false","active":"false","description":"","tasks":[{"id":"2"},{"id":"21"}],"categories":[{"id":"87"},{"id":"72"},{"id":"89"},{"id":"96"},{"id":"73"},{"id":"92"},{"id":"93"},{"id":"85"},{"id":"71"},{"id":"91"},{"id":"69"},{"id":"79"},{"id":"97"},{"id":"88"},{"id":"75"},{"id":"68"},{"id":"84"},{"id":"98"},{"id":"80"},{"id":"74"},{"id":"83"},{"id":"76"},{"id":"99"},{"id":"86"},{"id":"90"},{"id":"94"},{"id":"78"},{"id":"77"},{"id":"82"},{"id":"70"},{"id":"81"}]}]}
-ix
-iy
-iy{"id":"22","title":"New Title","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"116"}]}
-iy
-iz
-iz
-iz
-i{
-i{F{"errorMessages":["Failed Validation: doneStatus should be BOOLEAN"]}
-i{
-i|
-i|
-i}
-i}6{"errorMessages":["Invalid GUID for -1 entity todo"]}
-i}
-i~
-i~
-i
-i
-i
-i€
-i€
-i
-i{"categories":[]}
-i
-i‚
-i‚Ï{"todos":[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"33","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"125"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]}
-i‚Å[{"id":"1","title":"scan paperwork","doneStatus":"false","description":""},{"id":"33","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu","tasksof":[{"id":"1"}],"categories":[{"id":"125"}]},{"id":"2","title":"file paperwork","doneStatus":"false","description":"","tasksof":[{"id":"1"}]}]
-i‚
-iƒ
-iƒ
-i„
-i„
-i„
-i…
-i…A{"errorMessages":["Could not find thing matching value for Id"]}
-i…
-i†
-i†1{"errorMessages":["title : field is mandatory"]}
-i†
-i‡
-i‡
-iˆ
-iˆe{"id":"40","title":"s aute irure dolor i","doneStatus":"false","description":"sse cillum dolore eu"}
-iˆ
-i‰
-i‰^Response body: {"errorMessages":["Mismatched title and project at 88 [character 89 line 1]"]}
-i‰
-‹Š
-‹Š(Performance Stats for Change Categories
-‹Še____________________________________________________________________________________________________
-‹Še| Size         | Time (s)           | CPU Usage (%)      | Memory (MB)        | Sample Time (s)    |
-‹Še|--------------|--------------------|--------------------|--------------------|--------------------|
-‹Še| 1            | 0.009050           | 0.00               | 94                 | 0.025863           |
-‹Še| 10           | 0.002318           | 45.45              | 84                 | 0.092376           |
-‹Še| 50           | 0.002966           | 45.90              | 88                 | 0.327915           |
-‹Še| 100          | 0.003048           | 52.61              | 88                 | 0.644569           |
-‹Še| 250          | 0.001889           | 54.47              | 81                 | 1.393486           |
-‹Še| 500          | 0.002492           | 54.55              | 56                 | 2.578235           |
-‹Še| 1000         | 0.002725           | 55.47              | 71                 | 4.583503           |
-‹Še____________________________________________________________________________________________________
-‹Š™Graph saved to: /Users/anjalisinghal/Documents/Fall2024/ecse429/project/./src/test/java/performanceTests/graphs/Change_Categories_SampleTime_vs_Size.png
-‹Œ
-‹Œ%Performance Stats for Add Categories
-‹Œe____________________________________________________________________________________________________
-‹Œe| Size         | Time (s)           | CPU Usage (%)      | Memory (MB)        | Sample Time (s)    |
-‹Œe|--------------|--------------------|--------------------|--------------------|--------------------|
-‹Œe| 1            | 0.021215           | 38.25              | 172                | 0.021282           |
-‹Œe| 10           | 0.001707           | 62.50              | 167                | 0.035265           |
-‹Œe| 50           | 0.001229           | 63.79              | 158                | 0.109920           |
-‹Œe| 100          | 0.002944           | 76.81              | 168                | 0.206731           |
-‹Œe| 250          | 0.000950           | 63.28              | 166                | 0.374400           |
-‹Œe| 500          | 0.001935           | 82.39              | 139                | 0.815016           |
-‹Œe| 1000         | 0.001475           | 84.68              | 137                | 1.398471           |
-‹Œe____________________________________________________________________________________________________
-‹Œ–Graph saved to: /Users/anjalisinghal/Documents/Fall2024/ecse429/project/./src/test/java/performanceTests/graphs/Add_Categories_SampleTime_vs_Size.png
-‹
-‹(Performance Stats for Delete Categories
-‹e____________________________________________________________________________________________________
-‹e| Size         | Time (s)           | CPU Usage (%)      | Memory (MB)        | Sample Time (s)    |
-‹e|--------------|--------------------|--------------------|--------------------|--------------------|
-‹e| 1            | 0.003893           | 78.26              | 132                | 0.020068           |
-‹e| 10           | 0.001949           | 96.88              | 133                | 0.060619           |
-‹e| 50           | 0.001723           | 89.47              | 130                | 0.211389           |
-‹e| 100          | 0.001550           | 88.57              | 156                | 0.438041           |
-‹e| 250          | 0.002058           | NaN                | 165                | 0.938265           |
-‹e| 500          | 0.003395           | 75.55              | 155                | 1.748298           |
-‹e| 1000         | 0.001800           | 66.27              | 177                | 3.255722           |
-‹e____________________________________________________________________________________________________
-‹™Graph saved to: /Users/anjalisinghal/Documents/Fall2024/ecse429/project/./src/test/java/performanceTests/graphs/Delete_Categories_SampleTime_vs_Size.png
+ªGraph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_CumulativeTime_vs_Size.png
+¥Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_CPU_usage_vs_Size.png
+§Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Update_Todos_MemoryUsage_vs_Size.png
+Update Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.002031             0.000000             97                   0.002032            
+_10         0.000770             50.000000            96                   0.009713            
+_50         0.000546             76.666667            77                   0.043757            
+_100        0.000547             42.857143            65                   0.072067            
+_250        0.000332             43.661972            88                   0.158283            
+_500        0.000355             NaN                  74                   0.313209            
+_1000       0.000191             NaN                  89                   0.455394            
+§Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CumulativeTime_vs_Size.png
+¢Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_CPU_usage_vs_Size.png
+¤Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Add_Todos_MemoryUsage_vs_Size.png
+Add Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.001336             45.447761            175                  0.001337            
+_10         0.000420             30.526316            180                  0.117128            
+_50         0.000310             20.697674            155                  0.659677            
+_100        0.000630             19.604317            183                  1.357387            
+_250        0.001217             22.177419            138                  3.540333            
+_500        0.000757             22.046968            84                   7.127345            
+_1000       0.000642             21.895768            80                   14.311204           
+ªGraph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CumulativeTime_vs_Size.png
+¥Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_CPU_usage_vs_Size.png
+§Graph saved to: /Users/faizachowdhury/Documents/GitHub/429-partB/ECSE-429-Project-Group12/./src/test/java/performanceTests/graphs/Delete_Todos_MemoryUsage_vs_Size.png
+Delete Todos Statistics
+_SIZE       TIME (s)             CPU USAGE (%)        MEMORY (MB)          CUMULATIVE TIME (s) 
+_1          0.000320             41.379310            59                   0.001276            
+_10         0.000428             18.478261            31                   0.115599            
+_50         0.001230             21.350763            31                   0.691645            
+_100        0.000552             23.252280            92                   1.520868            
+_250        0.000443             22.091153            50                   3.863343            
+_500        0.000287             22.675879            50                   7.862806            
+_1000       0.000797             24.276992            46                   15.677003           
